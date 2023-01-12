@@ -1,6 +1,6 @@
 from typing import Any
 
-from test_framework.helpers.main_checkers import CommonChecker
+from API.test_framework.helpers.main_checkers import CommonChecker
 
 
 class CheckerUserService:

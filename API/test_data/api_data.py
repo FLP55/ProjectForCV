@@ -1,7 +1,5 @@
 import uuid
 
-from test_framework.helpers.data_generation import get_custom_password
-
 
 class DataClient:
     @staticmethod
@@ -25,7 +23,7 @@ class DataClient:
         return {
             "mobilePhone": phone_number,
             "id": str(uuid.uuid4()),
-            "password": get_custom_password(),
+            "password": "Qwerty55",
             "securityQuestion": "cat name",
             "securityAnswer": "niki",
             "email": f"{phone_number}@mail.ru",

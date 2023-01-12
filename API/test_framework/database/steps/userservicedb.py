@@ -1,7 +1,7 @@
 from typing import Any
 
-from test_framework.database.checkers.userservicedb import CheckerUserService
-from test_framework.database.queries.userservicedb import QueriesUserService
+from API.test_framework.database.checkers.userservicedb import CheckerUserService
+from API.test_framework.database.queries.userservicedb import QueriesUserService
 
 
 class StepsUserService:
