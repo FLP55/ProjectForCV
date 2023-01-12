@@ -1,6 +1,6 @@
 import allure
 
-from test_framework.api.data.client.client_status import statuses_client
+from test_framework.data.client.client_status import statuses_client
 from test_framework.api.data.phones_cleint.all_phones import valid_phone_number_no_client
 from test_framework.api.steps.steps_api import ApiSteps
 from test_framework.helpers.main_checkers import CommonChecker

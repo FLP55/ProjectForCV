@@ -1,6 +1,6 @@
 from typing import Any
 
-from test_framework.database.orm.usersevicedb import Client
+from API.test_framework.database.orm.usersevicedb import Client
 
 
 class QueriesUserService:

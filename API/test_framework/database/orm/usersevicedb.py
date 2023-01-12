@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
-from test_framework.database.base import BaseModel
+from API.test_framework.database.base import BaseModel
 
 
 class Client(BaseModel):

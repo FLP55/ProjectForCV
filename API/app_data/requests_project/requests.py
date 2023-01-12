@@ -1,7 +1,7 @@
 from typing import Any
 
 from API.app_data.base_requests import BaseRequests
-from test_data.api.data_url import MainURL
+from API.test_data.data_url import MainURL
 
 main_headers = {"Fingerprint": "xxx"}
 

@@ -3,7 +3,7 @@ from typing import Any
 import requests
 from requests import Response
 
-from test_framework.helpers.log import my_log
+from API.test_framework.helpers.log import my_log
 
 
 class BaseRequests:
