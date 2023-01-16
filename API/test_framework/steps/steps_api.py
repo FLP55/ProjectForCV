@@ -14,12 +14,15 @@ class ApiSteps:
         self.checker = CheckersApi()
         self.data = DataClient()
 
-    def authorization_by_phone_and_password(self, phone_number, password):
-        pass
+    @allure.step("Регистрация пользователя")
+    def registration_user(self) -> Any:
+        payload = self.data.get_payload_for_registration_user()
+        response = self.request.reg_client(payload)
+        CommonChecker.check_status_code_201(response, assertion_message="Не удалось зарегистрировать клиента клиента")
+        return response
 
     @allure.step("Удаление токена, logout пользователя")
     def logout_user(self) -> Any:
         request = self.request.logout_user_token()
         CommonChecker.check_status_code_ok(request, assertion_message="Не удалось удалить токен авторизации")
         return request
-

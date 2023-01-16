@@ -12,7 +12,7 @@ class BasePage(object):
         self.url = url
         self.browser.implicitly_wait(5)
 
-    def open(self, url="https://localhost:8080") -> None:
+    def open(self, url="http://172.17.1.27/") -> None:
         """Открывает указанную веб-страницу в браузере
         :return: None
         """
