@@ -19,14 +19,11 @@ class DataClient:
         }
 
     @staticmethod
-    def get_payload_for_client(phone_number: str) -> dict:
+    def get_payload_for_registration_user() -> dict:
         return {
-            "mobilePhone": phone_number,
-            "id": str(uuid.uuid4()),
+            "email": "denislomaev1488@gmail.com",
             "password": "Qwerty55",
-            "securityQuestion": "cat name",
-            "securityAnswer": "niki",
-            "email": f"{phone_number}@mail.ru",
+            "password_confirmation": "Qwerty55"
         }
 
     @staticmethod

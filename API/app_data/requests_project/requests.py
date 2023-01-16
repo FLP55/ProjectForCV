@@ -19,7 +19,7 @@ class RequestsForTestSait:
         return self.request.post(url=f"{self.base_url}/api/v1/registration/user-profile/new/", json=payload)
 
     def reg_client(self, payload: dict) -> Any:
-        return self.request.post(url=f"{self.base_url}/api/v1/registration/user-profile/", json=payload)
+        return self.request.post(url=f"{self.base_url}/register/", json=payload)
 
     def get_phone_number_by_passport(self, payload: dict) -> Any:
         return self.request.post(url=f"{self.base_url}/api/v1/security/session", json=payload)
