@@ -3,27 +3,12 @@ import uuid
 
 class DataClient:
     @staticmethod
-    def get_payload_for_no_client(phone_number_no_client: str) -> dict:
+    def get_payload_for_registration_user(email: str, password: str, confirm_password: str) -> dict:
         return {
-            "mobilePhone": phone_number_no_client,
-            "password": "Qwerty5",
-            "securityQuestion": "cat name",
-            "securityAnswer": "vasika",
-            "email": "denis1488@mail.ru",
-            "firstName": "Denis",
-            "lastName": "Kotov",
-            "passportNumber": "SN-121-000-100",
-            "countryOfResidence": "RU",
-            "ExpiryDate": "2022-09-28",
-            "middleName": "Yurievich",
-        }
-
-    @staticmethod
-    def get_payload_for_registration_user() -> dict:
-        return {
-            "email": "denislomaev1488@gmail.com",
-            "password": "Qwerty55",
-            "password_confirmation": "Qwerty55"
+            "email": email,
+            "password": password,
+            "password_confirmation": confirm_password,
+            "recaptcha": "random_str"
         }
 
     @staticmethod
