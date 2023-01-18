@@ -14,11 +14,18 @@ class ApiSteps:
         self.checker = CheckersApi()
         self.data = DataClient()
 
-    @allure.step("Регистрация пользователя")
-    def registration_user(self) -> Any:
-        payload = self.data.get_payload_for_registration_user()
+    @allure.step("Регистрация пользователя валидная")
+    def registration_user(self, email, password, confirm_password) -> Any:
+        payload = self.data.get_payload_for_registration_user(email, password, confirm_password)
         response = self.request.reg_client(payload)
         CommonChecker.check_status_code_201(response, assertion_message="Не удалось зарегистрировать клиента клиента")
+        return response
+
+    @allure.step("Регистрация пользователя невалидная")
+    def registration_user_invalid(self, email, password, confirm_password) -> Any:
+        payload = self.data.get_payload_for_registration_user(email, password, confirm_password)
+        response = self.request.reg_client(payload)
+        CommonChecker.check_status_code_400(response, assertion_message="Удалось зарегистрировать клиента клиента")
         return response
 
     @allure.step("Удаление токена, logout пользователя")
