@@ -28,8 +28,10 @@ class ApiSteps:
         CommonChecker.check_status_code_400(response, assertion_message="Удалось зарегистрировать клиента клиента")
         return response
 
-    @allure.step("Удаление токена, logout пользователя")
-    def logout_user(self) -> Any:
-        request = self.request.logout_user_token()
-        CommonChecker.check_status_code_ok(request, assertion_message="Не удалось удалить токен авторизации")
-        return request
+    @allure.step("Авторизация пользователя")
+    # Пользователь подтвержден после регистрации вручную
+    def authorization_user(self, email, password) -> Any:
+        payload = self.data.get_payload_for_authorization_user(email, password)
+        response = self.request.auth_user(payload)
+        CommonChecker.check_status_code_202(response, assertion_message="Не удалось авторизоваться")
+
