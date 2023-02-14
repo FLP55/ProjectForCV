@@ -32,9 +32,14 @@ class MainPage(BasePage):
         enter_field_password = self.browser.find_element(*self.locators_by.field_password_locator)
         enter_field_password.click()
 
-    @allure.step('Ввод валидного пароля в поле "Пароль".')
-    def enter_password_in_pass_field(self, password):
-        enter_field_password = self.browser.find_element(*self.locators_by.password_text_field_locator)
+    @allure.step('Ввод валидного пароля в поле "Пароль" регистрации.')
+    def enter_password_in_pass_field_register(self, password):
+        enter_field_password = self.browser.find_element(*self.locators_by.password_text_field_locator_register)
+        enter_field_password.send_keys(password)
+
+    @allure.step('Ввод валидного пароля в поле "Пароль" авторизация.')
+    def enter_password_in_pass_field_login(self, password):
+        enter_field_password = self.browser.find_element(*self.locators_by.password_text_field_locator_login)
         enter_field_password.send_keys(password)
 
     @allure.step("Нажать на кнопку отображения пароля.")
@@ -76,3 +81,16 @@ class MainPage(BasePage):
             self.data.text_finish_page_reg,
             assertion_message="Произошла ошибка отсутствует либо не правельный текст на странице",
         )
+
+    @allure.step("Нажать на кнопку Войти")
+    def click_on_button_login(self):
+        click_button_login = self.browser.find_element(*self.locators_by.button_login)
+        click_button_login.click()
+
+    @allure.step("Авторизация пользователя.")
+    def authorization(self, email: str, password: str):
+        self.click_on_the_email_field()
+        self.enter_on_the_email_field(email=email)
+        self.click_on_the_password_input_field()
+        self.enter_password_in_pass_field_login(password=password)
+        self.click_on_button_login()

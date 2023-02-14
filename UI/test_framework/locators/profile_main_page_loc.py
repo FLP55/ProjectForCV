@@ -1,10 +1,12 @@
-# from selenium.webdriver.common.by import By
-#
-#
-# class LocatorsProfileMainPage:
-#     profile_general_information_page_locator = (By.XPATH, "//div[@class='user-photo-tkrf0']")
-#     profile_cards_page_locator = (By.XPATH, "//a[@class='item-base-HF_xD'][@href='#/my_cards']")
-#     button_credits_section = (By.XPATH, "//span[text()='Кредиты']")
-#     button_credit_product = (By.XPATH, "//span[text()='Кредитные продукты']")
-#     profile_transfer_via_cards_locator = (By.XPATH, "//*[@class='item-text-OfK2X'][text()='Переводы']")
-#
+from selenium.webdriver.common.by import By
+
+
+class LocatorsProfileMainPage:
+    logo_JointML = (By.XPATH, "//h2[text()='Заполнение профиля']")
+    name_field_locator = (By.XPATH, "//input[@id='firstName']")
+    last_name_field_locator = (By.XPATH, "//input[@id='lastName']")
+    middle_name_field_locator = (By.XPATH, "//input[@id='middleName']")
+    phone_field_locator = (By.XPATH, "//input[@id='phone']")
+    company_field_locator = (By.XPATH, "//input[@id='company']")
+    position_field_locator = (By.XPATH, "//input[@id='position']")
+    button_continue_locator = (By.XPATH, "//button[text()='Продолжить']")

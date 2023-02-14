@@ -25,8 +25,16 @@ class CommonChecker:
         assert r.status_code == 201, f"{assertion_message}: {r.status_code}"
 
     @staticmethod
+    def check_status_code_200(r: Any, assertion_message: str = default_message) -> None:
+        assert r.status_code == 200, f"{assertion_message}: {r.status_code}"
+
+    @staticmethod
     def check_status_code_202(r: Any, assertion_message: str = default_message) -> None:
         assert r.status_code == 202, f"{assertion_message}: {r.status_code}"
+
+    @staticmethod
+    def check_status_code_204(r: Any, assertion_message: str = default_message) -> None:
+        assert r.status_code == 204, f"{assertion_message}: {r.status_code}"
 
     @staticmethod
     def check_status_code_401(r: Any, assertion_message: str = default_message) -> None:

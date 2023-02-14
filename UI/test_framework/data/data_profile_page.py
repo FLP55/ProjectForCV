@@ -1,2 +1,2 @@
-# class DataProfilePage:
-#     empty_field = ""
+class DataProfilePage:
+    empty_field = ""
