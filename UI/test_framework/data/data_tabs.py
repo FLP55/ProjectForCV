@@ -1,5 +1,5 @@
-# class DataTabs:
-#     general_information = 'Общая информация'
-#     security = 'Безопасность'
-#     notifications = 'Уведомления'
-#     settings = 'Настройки'
+class DataTabs:
+    headers_register_completion = 'Общая информация'
+    security = ''
+    notifications = ''
+    settings = ''

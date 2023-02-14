@@ -23,6 +23,9 @@ class BaseRequests:
     def put(self, url: str, headers: dict = None, json: dict = None) -> Response:
         return self._api_call("PUT", url=url, headers=headers, json=json)
 
+    def delete(self, url: str, headers: dict = None, json: dict = None) -> Response:
+        return self._api_call("DELETE", url=url, headers=headers, json=json)
+
     def update_headers(self, headers: dict) -> None:
         if headers is not None:
             for key, item in headers.items():

@@ -1,24 +1,23 @@
 import pytest
 
-from API.test_framework.steps.steps_api import ApiSteps
 from API.test_framework.database.base import DBCreateSession
+from API.test_framework.steps.steps_api import ApiSteps
+from API.test_framework.data.email.real_email import super_user
+from API.test_framework.data.password_for_registration.password import passw_valid
 
 
-@pytest.fixture(scope="function")
-def authorization_by_phone():
-    def authorization(phone_number: str, password: str):
-        # Авторизация пользователя
-        ApiSteps().authorization_by_phone_and_password(phone_number, password)
-
-    yield authorization
-    ApiSteps().logout_user()
+@pytest.fixture
+def auth_super_user():
+    # Авторизация супер юзера
+    authorization = ApiSteps().authorization_user(email=super_user, password=passw_valid)
+    return authorization
 
 
-# @pytest.fixture(scope="function")
-# def authorization_by_passport():
-#     def authorization(passport_number: str):
+# def authorization_by_phone():
+#     def authorization(phone_number: str, password: str):
 #         # Авторизация пользователя
-#         ApiSteps().authorization_by_passport(passport_number)
+#         authorization_json = ApiSteps().authorization_by_phone_and_password(phone_number, password)
+#         return authorization_json
 #
 #     yield authorization
 #     ApiSteps().logout_user()

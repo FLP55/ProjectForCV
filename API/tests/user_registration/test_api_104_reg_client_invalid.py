@@ -7,8 +7,8 @@ from API.test_framework.steps.steps_api import ApiSteps
 
 
 
-@allure.id("C6101172")
-@allure.title("C6101172. Регистрация пользователя в приложении с невалидными данными")
+@allure.id("104")
+@allure.title("104. Регистрация пользователя в приложении с невалидными данными")
 @pytest.mark.parametrize("valid_email", invalid_emails)
 def test_api_c5978275_reg_no_client_bank(valid_email) -> None:
     # Проверка, что Регистрация пользователя не удается с невалидными данными
