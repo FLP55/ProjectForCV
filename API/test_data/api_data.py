@@ -28,11 +28,11 @@ class DataClient:
     @staticmethod
     def get_payloda_register_complition() -> Any:
         return {
-                "first_name": "Денис",
-                "last_name": "Денисов",
-                "middle_name": "Юрьевич2",
-                "company": "Тестовая компания",
-                "position": "QA",
+                "first_name": "Автотест",
+                "last_name": "Заполнение",
+                "middle_name": "Данных",
+                "company": "Автотестовая компания",
+                "position": "Не Админ",
                 "phone": "800555777",
                 "is_business_admin": "False"
             }

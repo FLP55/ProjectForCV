@@ -8,8 +8,10 @@ from API.test_framework.data.password_for_registration.password import passw_val
 @allure.id("117")
 @allure.title("117. Заполнение валидными данными пользователя не Бизнес Админ")
 def test_api_117_register_completion() -> None:
-    # # Регистрация пользователя
-    # ApiSteps().registration_user(email=smoke_mail, password=passw_valid, confirm_password=passw_valid)
+    # Регистрация пользователя
+    ApiSteps().registration_user(email=smoke_mail, password=passw_valid, confirm_password=passw_valid)
+
+    # Тут надо дописать проверку на подтверждение юзера через БД
 
     # Авторизация пользователя и получение токена
     ApiSteps().auth_user_get_token(email=smoke_mail, password=passw_valid)
