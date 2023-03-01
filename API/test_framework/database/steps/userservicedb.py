@@ -2,9 +2,9 @@ from typing import Any
 
 import allure
 
-from test_framework.database.checkers.userservicedb import CheckerUserService
-from test_framework.database.queries.userservicedb import QueriesUserService
-from test_framework.helpers.main_checkers import CommonChecker
+from API.test_framework.database.checkers.userservicedb import CheckerUserService
+from API.test_framework.database.queries.userservicedb import QueriesUserService
+from API.test_framework.helpers.main_checkers import CommonChecker
 
 
 class StepsUserService:

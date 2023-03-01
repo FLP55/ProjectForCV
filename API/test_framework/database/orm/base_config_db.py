@@ -6,14 +6,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from config import url_db
-from API.test_framework.helpers.log import my_log
+from API.test_framework.helpers.log import main_logger as logger
 
 
 class BaseDB:
     _session = None
 
     def __init__(self):
-        self.logger = my_log()
+        self.logger = logger()
 
     @property
     @abstractmethod

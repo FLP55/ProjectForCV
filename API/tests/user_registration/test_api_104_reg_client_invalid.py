@@ -6,7 +6,6 @@ from API.test_framework.data.password_for_registration.password import passw_inv
 from API.test_framework.steps.steps_api import ApiSteps
 
 
-
 @allure.id("104")
 @allure.title("104. Регистрация пользователя в приложении с невалидными данными")
 @pytest.mark.parametrize("valid_email", invalid_emails)

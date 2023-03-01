@@ -1,7 +1,7 @@
 import logging
 
 
-def my_log():
+def main_logger():
     logging.basicConfig(format="%(asctime)-15s %(message)s", filemode="w")
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
