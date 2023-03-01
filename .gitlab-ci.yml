@@ -1,0 +1,76 @@
+stages:
+ - testing # Запуск тестов
+ - history_copy # Копирование результата тестов из предыдущего запуска тестов
+ - testops
+ - reports # Генерация отчета
+ - deploy # Публикация отчета на gitlab pages
+
+variables:  # Переменные
+ TEST_NAME:
+   value: ""
+   description: "Название теста"
+ PROCESS:
+   value: "1"
+   description: "Количество потоков"
+
+Run_Job: # Название job
+ stage: testing # Первый stage, который нужно выполнить
+ image: nikolaymedvedev/aqa_python_gor # Образ выполнения
+ before_script:
+   - pip install -r requirements.txt  # предварительный скрипт # Образ выполнения
+ script:
+   - pytest -n=$PROCESS -v -s -k "test_${TEST_NAME}" ./API/tests/ --alluredir=./allure-results
+ allow_failure: true # Это позволит нам продолжить выполнение пайплайна в случае, если тесты упали.
+ artifacts: # Сущность, с помощью которой, мы сохраним результат тестирования.
+     when: always # Сохранять всегда
+     paths:
+       - ./allure-results # Здесь будет сохранен отчет
+     expire_in: 1 day # Да, он будет удален через день. Нет смысла хранить его в течение длительного срока.
+
+history_job: # Название job
+ stage: history_copy # Это второй stage, который нужно выполнить
+ image: storytel/alpine-bash-curl # Но теперь укажем раннеру использовать другой образ, для того чтобы скачать результаты теста из предыдущего пайплайна. Нам же нужна история тестов, верно?
+ script:
+   - 'curl --location --output artifacts.zip "https://git.astondevs.ru/api/v4/projects/206/jobs/artifacts/devops/download?job=pages&job_token=$CI_JOB_TOKEN"'  # С помощью api гитлаба скачиваем файлы из job, который будет указан ниже. Обратите внимание на текст на русском в ссылке. Очень важно указать вместо текста и скобок номер вашего репозиториия
+ allow_failure: true # Так как при первом запуске пайплайна истории нет, это позволит нам избежать падения пайплайна. В дальнейшем эту строчку можно спокойно удалить.
+ artifacts:
+   paths:
+     - ./allure-results # Сохраняем данные
+   expire_in: 1 day
+ rules:
+   - when: always # Сохранять всегда
+
+testops:
+ stage: testops
+ image: python:3.9-alpine
+ before_script:
+  - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -O ./allurectl
+  - chmod +x ./allurectl
+ script:
+   - ./allurectl upload allure-results/
+ after_script:
+   - ./allurectl job-run stop
+
+allure_job: # Название job
+ stage: reports # Третий stage, который будет выполнен
+ image: frankescobar/allure-docker-service # Указываем раннеру использовать образ с allure. В нем мы будем генерировать отчет.
+ script:
+    - allure generate -c ./allure-results -o ./allure-report # Генерируем отчет из ./allure-results внутрь папки ./allure-report
+ artifacts:
+   paths:
+     - ./allure-results # Примонтируем две этих директории для получения результатов тестирования и генерации отчетов соответственно
+     - ./allure-report
+   expire_in: 1 day
+ rules:
+   - when: always
+
+pages: # Названием этой job говорим гитлабу, чтобы захостил результат у себя в pages
+ stage: deploy # Четвертый stage, который будет выполнен
+ script:
+   - mkdir public # Создаем папку public. По умолчанию гитлаб хостит в gitlab pages только из папки public
+   - mv ./allure-report/* public # Перемещаем в папку public сгенерированный отчет.
+ artifacts:
+   paths:
+     - public
+ rules:
+   - when: always
