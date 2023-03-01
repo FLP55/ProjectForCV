@@ -2,14 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from API.config import connection_route
+from config import url_db
 
 BaseModel = declarative_base(name="BaseModel")
 
 
 class DBCreateSession:
     def __init__(self):
-        self.db_route: str = connection_route
+        self.db_route: str = url_db
 
     def connect(self):
         return create_engine(self.db_route)
