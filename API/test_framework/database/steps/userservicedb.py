@@ -20,7 +20,7 @@ class StepsUserService:
         ver_code_db = StepsUserService().get_verification_code(ver_code)[0][0]
         CommonChecker().check_field_equals(ver_code_db, ver_code)
         return ver_code_db
-
+ 
     def get_user_info_from_client_table(self) -> Any:
         return self.queries.select_all_data_from_table_client()
 

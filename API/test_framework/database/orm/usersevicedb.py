@@ -3,43 +3,59 @@ from sqlalchemy import Boolean, Column, Integer, String
 from API.test_framework.database.base import BaseModel
 
 
-class Client(BaseModel):
-    __tablename__ = "db_client"
+class JointUser(BaseModel):
+    __tablename__ = "joint_user"
 
     id = Column(String, primary_key=True)
     first_name = Column(String)
     last_name = Column(String)
-    sur_name = Column(String)
-    country_of_residence = Column(String)
-    client_status = Column(String)
+    middle_name = Column(String)
+    position = Column(String)
+    phone = Column(String)
+    is_business_admin = Column(Boolean)
+    state = Column(String)
+    account_id = Column(String)
+    company_id = Column(String)
+    created_at = Column(Integer)
 
 
-class Contacts(BaseModel):
-    __tablename__ = "db_contacts"
+class Company(BaseModel):
+    __tablename__ = "company"
 
     id = Column(Integer, primary_key=True)
-    id_client = Column(String)
-    sms_notification = Column(Boolean)
-    push_notification = Column(Boolean)
+    name = Column(String)
+    INN = Column(Boolean)
+    description = Column(Boolean)
+    is_active = Column(Boolean)
+    industry_id = Column(Integer)
+    country = Column(String)
+    region = Column(String)
+
+
+class UserAccount(BaseModel):
+    __tablename__ = "user_account"
+
+    id = Column(Integer, primary_key=True)
+    password = Column(String)
     email = Column(String)
-    email_subscription = Column(Boolean)
-    mobile_phone = Column(String)
+    confirmed = Column(Boolean)
+    is_active = Column(Boolean)
+    is_staff = Column(Boolean)
+    is_superuser = Column(Boolean)
+    region = Column(String)
 
 
-class Fingerprint(BaseModel):
-    __tablename__ = "db_fingerprint"
-
-    id = Column(Integer, primary_key=True)
-    id_client = Column(String)
-    fingerprint = Column(String)
-
-
-class PassportData(BaseModel):
-    __tablename__ = "db_passport_data"
+class AlliancesAlliance(BaseModel):
+    __tablename__ = "alliances_alliance"
 
     id = Column(Integer, primary_key=True)
-    id_client = Column(String)
-    identification_passport_number = Column(String)
+    name = Column(String)
+    email = Column(String)
+    confirmed = Column(Boolean)
+    is_active = Column(Boolean)
+    is_staff = Column(Boolean)
+    is_superuser = Column(Boolean)
+    region = Column(String)
 
 
 class UserProfile(BaseModel):
