@@ -50,8 +50,7 @@ class AlliancesAlliance(BaseModel):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    email = Column(String)
-    confirmed = Column(Boolean)
+    is_closed = Column(String)
     is_active = Column(Boolean)
     is_staff = Column(Boolean)
     is_superuser = Column(Boolean)
