@@ -3,13 +3,14 @@ from typing import Any
 import requests
 from requests import Response
 
-from API.test_framework.helpers.log import my_log
+from API.test_framework.helpers.log import main_logger
+from API.test_framework.helpers.report import allure_attach_response
 
 
 class BaseRequests:
     def __init__(self) -> None:
         self.headers: dict = {"Content-Type": "application/json"}
-        self.logger = my_log()
+        self.logger = main_logger()
 
     def get(self, url: str, headers: dict = None) -> Response:
         return self._api_call("GET", url=url, headers=headers)
@@ -33,14 +34,12 @@ class BaseRequests:
 
     def _api_call(self, method: Any, url: str, headers: Any, json: dict = None) -> Any:
         try:
-            self.update_headers(headers)
-            self.logger.info(f"\n***** Request:  {method} {url}")
-            self.logger.info(f"***** JSON:  {json}")
-            request = requests.request(method, url, headers=self.headers, json=json)
-            self.logger.info(f"***** Response: {0}".format(request.content))
-            self.logger.info("======" * 150)
-            return request
+            return self._request(method, url, headers=headers, json=json)
         except Exception as error:
-            self.logger.error(f"***** ERROR: {error}\n")
-            self.logger.info("======" * 150)
+            self.logger.error(f"***<ERROR>: {error}\n ***")
         return None
+
+    @allure_attach_response
+    def _request(self, method: Any, url: str, headers: Any, json: dict = None) -> Response:
+        self.update_headers(headers)
+        return requests.request(method, url, headers=self.headers, json=json)

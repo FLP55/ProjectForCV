@@ -55,3 +55,6 @@ class CommonChecker:
     @staticmethod
     def check_not_empty_response(r: Any, assertion_message: str = default_message) -> None:
         assert r is not None, assertion_message
+
+
+
