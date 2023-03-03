@@ -2,7 +2,7 @@ from typing import Any
 
 import allure
 
-from API.app_data.requests_project.requests import RequestsForTestSait, headers
+from API.app_data.requests_project.requests import RequestsForTestAPI, headers
 from API.test_data.api_data import DataClient
 from API.test_framework.api_checkers.checkers import CheckersApi
 from API.test_framework.helpers.main_checkers import CommonChecker
@@ -10,7 +10,7 @@ from API.test_framework.helpers.main_checkers import CommonChecker
 
 class ApiSteps:
     def __init__(self) -> None:
-        self.request = RequestsForTestSait()
+        self.request = RequestsForTestAPI()
         self.checker = CheckersApi()
         self.data = DataClient()
 
