@@ -31,14 +31,18 @@ history_job: # Название job
  stage: history_copy # Это второй stage, который нужно выполнить
  image: storytel/alpine-bash-curl # Но теперь укажем раннеру использовать другой образ, для того чтобы скачать результаты теста из предыдущего пайплайна. Нам же нужна история тестов, верно?
  script:
-   - 'curl --location --output artifacts.zip "https://git.astondevs.ru/api/v4/projects/206/jobs/artifacts/devops/download?job=pages&job_token=$CI_JOB_TOKEN"'  # С помощью api гитлаба скачиваем файлы из job, который будет указан ниже. Обратите внимание на текст на русском в ссылке. Очень важно указать вместо текста и скобок номер вашего репозиториия
- allow_failure: true # Так как при первом запуске пайплайна истории нет, это позволит нам избежать падения пайплайна. В дальнейшем эту строчку можно спокойно удалить.
+  - 'curl --location --output artifacts.zip "https://git.astondevs.ru/api/v4/projects/206/jobs/artifacts/main/download?job=pages&job_token=$CI_JOB_TOKEN"'
+  - apk add unzip
+  - unzip artifacts.zip
+  - chmod -R 777 public
+  - cp -r ./public/history ./allure-results
+ allow_failure: true
  artifacts:
    paths:
-     - ./allure-results # Сохраняем данные
+     - ./allure-results
    expire_in: 1 day
  rules:
-   - when: always # Сохранять всегда
+   - when: always
 
 testops:
  stage: testops
