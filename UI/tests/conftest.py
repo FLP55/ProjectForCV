@@ -1,8 +1,13 @@
+import time
+
 import pytest
 from selenium import webdriver
+from selenium.common import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.utils import ChromeType
+
+from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainPage
 
 
 def pytest_addoption(parser):
@@ -21,7 +26,13 @@ def browser(request):
     browser = browser_set(request)
     browser.implicitly_wait(5)
     yield browser
-    browser.quit()
+    try:
+        ProfileMainPage(browser)
+    except TimeoutException as err:
+        return err
+    finally:
+        time.sleep(2)
+        browser.quit()
 
 
 def browser_set(request):

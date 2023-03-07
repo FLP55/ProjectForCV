@@ -14,7 +14,7 @@ from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainP
 @allure.id("265")
 @allure.title("265 Заполнение профиля пользователя JointML не админ")
 def test_ui_c6025107_view_existing_cards(browser):
-    # Открытие главной страницы банка
+    # Открытие главной страницы
     main_page = MainPage(browser, MAIN_PAGE_URL)
     main_page.open()
 
@@ -23,7 +23,7 @@ def test_ui_c6025107_view_existing_cards(browser):
 
     # Проверка что профиль не заполнен и мы находимся на нужной нам странице
     profile_main_page = ProfileMainPage(browser, url=browser.current_url)
-    profile_main_page.page_title_check()
+    profile_main_page.page_title_check_not_confirm()
 
     # Нажимаем на поле 'Имя'
     profile_main_page.click_field_name()

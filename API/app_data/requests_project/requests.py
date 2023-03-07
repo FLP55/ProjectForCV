@@ -13,7 +13,7 @@ class RequestsForTestAPI:
         self.headers = headers
 
     def reg_client(self, payload: dict) -> Any:
-        return self.request.post(url=f"{self.base_url}/auth/register/", json=payload
+        return self.request.post(url=f"{self.base_url}/auth/register/", json=payload)
 
     def auth_user(self, payload: dict) -> Any:
         return self.request.post(url=f"{self.base_url}/auth/login/", json=payload)

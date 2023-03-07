@@ -10,3 +10,7 @@ class LocatorsProfileMainPage:
     company_field_locator = (By.XPATH, "//input[@id='company']")
     position_field_locator = (By.XPATH, "//input[@id='position']")
     button_continue_locator = (By.XPATH, "//button[text()='Продолжить']")
+    nav_menu_alliance_locator = (By.XPATH, "//p[text()='Альянсы']")
+    header_confirm_user_locator = (By.XPATH, "//h3[text()='Данные о пользователе']")
+    create_alliance_locator = (By.XPATH, "//button[text()='Создать альянс']")
+
