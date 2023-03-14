@@ -1,8 +1,0 @@
-# valid_phone_number: str = "88001112222"
-# wrong_phone_number: str = "8800000000"
-# invalid_phone_number: str = "11111111111"
-# phone_not_registered: str = "375331231212"
-# phone_no_client: str = "375292222222"
-# valid_phone_number_no_client: str = "79002525708"
-# valid_phone_number_not_active: str = "88001112225"
-# valid_phone_number_active: str = "79002525707"

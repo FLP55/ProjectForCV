@@ -39,7 +39,7 @@ class UserAccount(BaseModel):
     password = Column(String)
     email = Column(String)
     confirmed = Column(Boolean)
-    is_active = Column(Boolean)
+    is_active = Column(Boolean, nullable=True)
     is_staff = Column(Boolean)
     is_superuser = Column(Boolean)
     region = Column(String)

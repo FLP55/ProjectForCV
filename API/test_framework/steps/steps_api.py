@@ -63,10 +63,10 @@ class ApiSteps:
         CommonChecker.check_status_code_202(request, assertion_message="Не удалось выйти")
         return request
 
-    @allure.step("Заполнение данными пользователя(Не бизнес Админ")
+    @allure.step("Заполнение данными пользователя")
     # Заполнение после регистрации
-    def register_complition(self):
-        payload = self.data.get_payloda_register_complition()
+    def register_completion(self, name: str, status: bool):
+        payload = self.data.get_payloda_register_complition(name, status)
         request = self.request.register_completion(payload)
         CommonChecker.check_status_code_201(request, assertion_message="Не удалось заполнить")
         return request

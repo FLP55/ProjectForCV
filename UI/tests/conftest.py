@@ -31,7 +31,6 @@ def browser(request):
     except TimeoutException as err:
         return err
     finally:
-        time.sleep(2)
         browser.quit()
 
 
