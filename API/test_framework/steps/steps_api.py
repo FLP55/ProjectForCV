@@ -2,7 +2,7 @@ from typing import Any
 
 import allure
 
-from API.app_data.requests_project.requests import RequestsForTestSait, headers
+from API.app_data.requests_project.requests import RequestsForTestAPI, headers
 from API.test_data.api_data import DataClient
 from API.test_framework.api_checkers.checkers import CheckersApi
 from API.test_framework.helpers.main_checkers import CommonChecker
@@ -10,7 +10,7 @@ from API.test_framework.helpers.main_checkers import CommonChecker
 
 class ApiSteps:
     def __init__(self) -> None:
-        self.request = RequestsForTestSait()
+        self.request = RequestsForTestAPI()
         self.checker = CheckersApi()
         self.data = DataClient()
 
@@ -63,10 +63,10 @@ class ApiSteps:
         CommonChecker.check_status_code_202(request, assertion_message="Не удалось выйти")
         return request
 
-    @allure.step("Заполнение данными пользователя(Не бизнес Админ")
+    @allure.step("Заполнение данными пользователя")
     # Заполнение после регистрации
-    def register_complition(self):
-        payload = self.data.get_payloda_register_complition()
+    def register_completion(self, name: str, status: bool):
+        payload = self.data.get_payloda_register_complition(name, status)
         request = self.request.register_completion(payload)
         CommonChecker.check_status_code_201(request, assertion_message="Не удалось заполнить")
         return request

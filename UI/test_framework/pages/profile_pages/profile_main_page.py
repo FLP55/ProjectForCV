@@ -1,20 +1,33 @@
 import allure
 
 from API.test_framework.helpers.main_checkers import CommonChecker
+from UI.test_data.url_data import MAIN_PAGE_URL
 from UI.test_framework.data.data_field import DataField
+from UI.test_framework.data.data_messages import DataMessages
 from UI.test_framework.data.data_tabs import DataTabs
 from UI.test_framework.locators.profile_main_page_loc import LocatorsProfileMainPage
 from UI.test_framework.pages.base_pages.base_page import BasePage
 
 
 class ProfileMainPage(BasePage):
-    locators_by = LocatorsProfileMainPage
+    def __init__(self, browser, url=None) -> None:
+        super().__init__(browser, url)
+        self.locators_by = LocatorsProfileMainPage
+        self.url = MAIN_PAGE_URL
     tab = DataTabs()
     field = DataField()
-    @allure.step("Проверка заголовка страницы")
-    def page_title_check(self):
+    error = DataMessages()
+
+    @allure.step("Проверка заголовка страницы не заполненного пользователя")
+    def page_title_check_not_confirm(self):
         profile_general_information_page = self.browser.find_element(*self.locators_by.logo_JointML).text
-        CommonChecker.check_field_equals(profile_general_information_page, "Заполнение профиля",
+        CommonChecker.check_field_equals(profile_general_information_page, self.tab.not_confirm_page_title,
+                                         assertion_message="Ошибка отображения вкладки 'Общая информация'")
+
+    @allure.step("Проверка заголовка страницы заполненного пользователя")
+    def page_title_check_confirm(self):
+        profile_general_information_page = self.browser.find_element(*self.locators_by.header_confirm_user_locator).text
+        CommonChecker.check_field_equals(profile_general_information_page, self.tab.confirm_page_title,
                                          assertion_message="Ошибка отображения вкладки 'Общая информация'")
 
     @allure.step("Клик на поле Имя")
@@ -81,3 +94,13 @@ class ProfileMainPage(BasePage):
     def click_button_continue(self):
         profile_completion = self.browser.find_element(*self.locators_by.button_continue_locator)
         profile_completion.click()
+
+    @allure.step("Переход в Альянсы")
+    def click_alliances(self):
+        nav_menu = self.browser.find_element(*self.locators_by.nav_menu_alliance_locator)
+        nav_menu.click()
+
+    @allure.step("Клик на кнопку Создать альянс")
+    def click_create_alliance(self):
+        create_alliance = self.browser.find_element(*self.locators_by.create_alliance_locator)
+        create_alliance.click()

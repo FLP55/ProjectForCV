@@ -6,7 +6,7 @@ from API.test_data.data_url import MainURL
 headers = {}
 
 
-class RequestsForTestSait:
+class RequestsForTestAPI:
     def __init__(self) -> None:
         self.request = BaseRequests()
         self.base_url = MainURL().get_url_from_dict("base_url")

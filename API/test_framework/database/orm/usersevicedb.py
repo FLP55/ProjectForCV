@@ -39,7 +39,7 @@ class UserAccount(BaseModel):
     password = Column(String)
     email = Column(String)
     confirmed = Column(Boolean)
-    is_active = Column(Boolean)
+    is_active = Column(Boolean, nullable=True)
     is_staff = Column(Boolean)
     is_superuser = Column(Boolean)
     region = Column(String)
@@ -50,25 +50,31 @@ class AlliancesAlliance(BaseModel):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    is_closed = Column(String)
+    is_closed = Column(Boolean)
     is_active = Column(Boolean)
-    is_staff = Column(Boolean)
-    is_superuser = Column(Boolean)
-    region = Column(String)
+    alliance_owner_id = Column(Integer)
+    description = Column(String)
+    industry_id = Column(Integer)
 
 
-class UserProfile(BaseModel):
-    __tablename__ = "db_user_profile"
-
-    id = Column(Integer, primary_key=True)
-    id_client = Column(String)
-    security_question = Column(String)
-    security_answer = Column(String)
-
-
-class Verification(BaseModel):
-    __tablename__ = "db_verification"
+class AlliancesAllianceMlModels(BaseModel):
+    __tablename__ = "alliances_alliance_ml_models"
 
     id = Column(Integer, primary_key=True)
-    id_contact = Column(String)
-    sms_verification_code = Column(String)
+    alliance_id = Column(Integer)
+    machinelearningmodel_id = Column(Integer)
+
+
+class MlModels(BaseModel):
+    __tablename__ = "ml_models"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    model_type = Column(String)
+    description = Column(String)
+    task = Column(String)
+    tags = Column(String)
+    author_id = Column(String)
+    size = Column(String)
+    owner_id = Column(Integer)
+

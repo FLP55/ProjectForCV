@@ -1,24 +1,27 @@
 from typing import Any, Union
 
+from sqlalchemy import bindparam, update
+
 from API.test_framework.database.db.user_service import UserServiceDB
 from API.test_framework.database.orm.base_config_db import BaseDB
-from API.test_framework.database.orm.usersevicedb import Verification
+from API.test_framework.database.orm.usersevicedb import UserAccount, JointUser
 
 
 class QueriesUserService:
     def __init__(self, db: BaseDB = None):
         self.db = db or UserServiceDB()
 
-    # def select_all_data_from_table_client(self) -> Union[Client, Any]:
-    #     with self.db.create_session() as session:
-    #         return session.query(Client.id).first()
-    #
-    # def select_verification_code(self, ver_code) -> Union[Verification, Any]:
-    #     with self.db.create_session() as session:
-    #         return session.query(Verification.sms_verification_code).filter(
-    #             Verification.sms_verification_code.ilike(ver_code)
-    #         )
-    #
-    # def select_email_subscription_from_table_contacts_by_client_id(self, client_id) -> Union[Client, Any]:
-    #     with self.db.create_session() as session:
-    #         return session.query(Contacts.email_subscription).filter(Contacts.id_client == client_id)
+    def select_all_data_from_table_user_account(self) -> Union[UserAccount, Any]:
+        with self.db.create_session() as session:
+            return session.query(UserAccount.id).first()
+
+    def select_id_user_from_user_account(self) -> Union[UserAccount, Any]:
+        with self.db.create_session() as session:
+            return session.query(UserAccount.id).filter(UserAccount.email == "autotestsmokeU@mail.ru")
+
+    def confirm_email_user(self, user: str) -> Union[UserAccount, Any]:
+        with self.db.create_session() as session:
+            return session.execute(update(UserAccount).where(
+                UserAccount.email == user).values(confirmed=True))
+
+
