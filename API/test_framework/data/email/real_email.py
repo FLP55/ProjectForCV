@@ -12,3 +12,4 @@ super_user = "astonlabtest@yandex.ru"
 email_for_api_user = "Pavel@mail.ru"
 email_for_reg = "Pavel1@mail.ru"
 password = "Qwerty55"
+boundary_password = ["Qwerty5", "QwertQwertQwertQwertQwertQwertQwertQwertQwertQwertQwert", "qwertyuuuuyt"]
