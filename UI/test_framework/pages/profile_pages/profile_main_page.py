@@ -2,7 +2,6 @@ import allure
 
 from API.test_framework.helpers.main_checkers import CommonChecker
 from UI.test_data.url_data import MAIN_PAGE_URL
-from UI.test_framework.data.data_field import DataField
 from UI.test_framework.data.data_messages import DataMessages
 from UI.test_framework.data.data_tabs import DataTabs
 from UI.test_framework.locators.profile_main_page_loc import LocatorsProfileMainPage
@@ -15,8 +14,6 @@ class ProfileMainPage(BasePage):
         self.locators_by = LocatorsProfileMainPage
         self.url = MAIN_PAGE_URL
     tab = DataTabs()
-    field = DataField()
-    error = DataMessages()
 
     @allure.step("Проверка заголовка страницы не заполненного пользователя")
     def page_title_check_not_confirm(self):
