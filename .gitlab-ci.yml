@@ -19,7 +19,7 @@ Run_Job: # Название job
  before_script:
    - pip install -r requirements.txt  # предварительный скрипт # Образ выполнения
  script:
-   - pytest -n=$PROCESS -v -s -k "test_${TEST_NAME}" ./API/tests/ --alluredir=./allure-results
+   - pytest -n=$PROCESS -v -s -k "test_${TEST_NAME}" . --alluredir=./allure-results
  allow_failure: true # Это позволит нам продолжить выполнение пайплайна в случае, если тесты упали.
  artifacts: # Сущность, с помощью которой, мы сохраним результат тестирования.
      when: always # Сохранять всегда
