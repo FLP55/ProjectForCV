@@ -4,7 +4,6 @@ import allure
 
 from API.test_framework.helpers.main_checkers import CommonChecker
 from UI.test_data.url_data import ALLIANCE_PAGE_URL
-from UI.test_framework.data.data_field import DataField
 from UI.test_framework.data.data_messages import DataMessages
 from UI.test_framework.data.data_tabs import DataTabs
 from UI.test_framework.locators.alliances_page_loc import LocatorsAlliancesPage
@@ -18,7 +17,6 @@ class ProfileAlliancePage(BasePage):
         self.url = ALLIANCE_PAGE_URL
 
     tab = DataTabs()
-    field = DataField()
     error = DataMessages()
 
     @allure.step("Проверка заголовка страницы заполненного пользователя")
