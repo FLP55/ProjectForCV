@@ -8,6 +8,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.utils import ChromeType
 
 from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainPage
+from config import env
 
 
 def pytest_addoption(parser):
@@ -37,6 +38,8 @@ def browser(request):
 def browser_set(request):
     browser_name = request.config.getoption("browser_name")
     if browser_name.lower() == "chrome":
+        if env == "linux":
+            return __create_chrome_ci()
         return __create_chrome()
     elif browser_name.lower() == "firefox" or "ff":
         return __create_firefox()
@@ -62,3 +65,12 @@ def __create_chromium():
     browser_chromium = webdriver.Chrome(executable_path=ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
     browser_chromium.set_window_size(1280, 860)
     return browser_chromium
+
+def __create_chrome_ci():
+    chrom_options = webdriver.ChromeOptions()
+    chrom_options.add_argument("--no-sandbox")
+    chrom_options.add_argument("--headless")
+    chrom_options.add_argument("--disable-gpu")
+    browser_chrome = webdriver.Chrome(chrome_options=chrom_options)
+    browser_chrome.set_window_size(1920, 1080)
+    return browser_chrome
