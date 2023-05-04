@@ -8,7 +8,7 @@ from UI.test_data.url_data import MAIN_PAGE_URL
 from UI.test_framework.pages.main_pages.main_page import MainPage
 
 
-@pytest.mark.ui_smoke
+@pytest.mark.ui
 @allure.id("128")
 @allure.title("128. Авторизация пользователя по Email с валидными данными")
 def test_ui_128_authorization_by_phone_valid(browser):

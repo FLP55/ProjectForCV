@@ -10,7 +10,7 @@ from UI.test_framework.pages.main_pages.main_page import MainPage
 from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainPage
 
 
-@pytest.mark.ui_smoke
+@pytest.mark.ui
 @allure.id("265")
 @allure.title("265 Заполнение профиля пользователя JointML не админ")
 def test_ui_c6025107_view_existing_cards(browser):
@@ -20,7 +20,7 @@ def test_ui_c6025107_view_existing_cards(browser):
 
     # Авторизация не бизнес админ
     main_page.authorization(email=email_no_admin, password=password)
-
+git
     # Проверка что профиль не заполнен и мы находимся на нужной нам странице
     profile_main_page = ProfileMainPage(browser, url=browser.current_url)
     profile_main_page.page_title_check_not_confirm()

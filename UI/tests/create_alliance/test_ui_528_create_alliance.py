@@ -11,7 +11,7 @@ from UI.test_framework.pages.profile_pages.profile_alliance_page import ProfileA
 from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainPage
 
 
-@pytest.mark.ui_smoke
+@pytest.mark.ui
 @allure.id("562")
 @allure.title("562 Создание альянса")
 def test_ui_528_create_alliance(browser):

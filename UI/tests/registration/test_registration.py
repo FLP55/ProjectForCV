@@ -9,7 +9,7 @@ from UI.test_framework.data.for_tests.data_C6109142 import valid_password
 from UI.test_framework.pages.main_pages.main_page import MainPage
 
 
-@pytest.mark.register_ui
+@pytest.mark.ui
 @allure.id("232")
 @allure.title("232. Регистрация пользователя по Email с валидными данными")
 def test_ui_125_registration_valid(browser):
