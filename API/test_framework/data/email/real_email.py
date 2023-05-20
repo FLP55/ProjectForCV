@@ -4,7 +4,7 @@ valid_emails = ["Pavel1@mail.ru", "firstname.lastname@domain.com", "email@subdom
 
 invalid_emails = ["ivan123mail.ru", "@ivan123mail.ru", "ivan123mail.ru@", "ivan123@mailru", ".ivan123@mailru",
                   "ivan123@mailru."]
-
+invalid_password = ["   ", "№;%::?()", "12345", "ทดสอบนะจ๊ะ", "qwert"]
 super_user = "astonlabtest@yandex.ru"
 
 

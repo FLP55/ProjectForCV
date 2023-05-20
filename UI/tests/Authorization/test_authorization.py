@@ -21,7 +21,7 @@ def test_ui_128_authorization_by_phone_valid(browser):
     main_page.click_on_the_email_field()
     time.sleep(0.2)
     # Ввести валидный email в поле "Электронная почта"
-    main_page.enter_on_the_email_field(email=email_for_api_user)
+    main_page.enter_data_to_email_reg_field(email=email_for_api_user)
     time.sleep(0.2)
     # Нажать на поле ввода "Пароль"
     main_page.click_on_the_password_input_field()

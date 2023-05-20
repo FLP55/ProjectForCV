@@ -7,3 +7,4 @@ confirm_invalid_password = [" ", "№;%::?()", "1E-16", "ทดสอบนะ�
 
 passw_inv = "qwerty"
 
+g
