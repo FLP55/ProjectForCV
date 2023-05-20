@@ -18,7 +18,7 @@ class ProfileGeneralInformationPage(BasePage):
 
     @allure.step('Нажать на поле "Электронная почта".')
     def click_on_the_email_field(self):
-        email_field = self.browser.find_element(*LocatorsMainPage.email_field_locator)
+        email_field = self.browser.find_element(*LocatorsMainPage.email_reg_field_locator)
         email_field.click()
 
     @allure.step('Ввести валидный Email в поле Электронная почта.')
