@@ -58,7 +58,7 @@ class ApiSteps:
 
     @allure.step("Получение токена авторизации")
     def auth_user_get_token(self, email, password):
-        auth_user = self.authorization_user_with_invalid_email(email, password)
+        auth_user = self.auth_user(email, password)
         csrf_token = auth_user.cookies.get("csrftoken")
         session_id = auth_user.cookies.get("sessionid")
         self.request.cookies['Cookie'] = 'csrftoken=' + csrf_token + ";" + ' sessionid=' + session_id
@@ -67,7 +67,7 @@ class ApiSteps:
     @allure.step("Удаление пользователей")
     # Техникческий метод на удаление всех юзеров после регистраций и созданий альянсов
     def delete_users_api(self, emails) -> Any:
-        payload = self.data.get_payload_only_email(emails)
+        payload = self.data.get_payload_for_delete_data(emails)
         response = self.request.delete_users(payload)
         CommonChecker.check_status_code_200(response, assertion_message="Не удалось удалить")
 

@@ -25,5 +25,11 @@ class DataClient:
             "email": email
         }
 
+    @staticmethod
+    def get_payload_for_delete_data(email: str) -> Any:
+        return {
+            "emails": email
+        }
+
 
 
