@@ -29,17 +29,36 @@ class ApiSteps:
         response = self.registration_user(email, password, confirm_password)
         CommonChecker.check_status_code_400(response, assertion_message="Удалось зарегистрировать клиента клиента")
 
-
     @allure.step("Авторизация пользователя")
-    # Пользователь подтвержден после регистрации вручную
-    def authorization_user(self, email, password) -> Any:
+    def auth_user(self, email, password) -> Any:
         payload = self.data.get_payload_for_authorization_user(email, password)
         response = self.request.auth_user(payload)
+        return response
+
+    @allure.step("Проверка авторизации на успешность")
+    # Пользователь подтвержден после регистрации вручную
+    def authorization_user(self, email, password) -> Any:
+        response = self.auth_user(email, password)
         CommonChecker.check_status_code_202(response, assertion_message="Не удалось авторизоваться")
         return response
 
+    @allure.step("Проверка авторизации на не успешность")
+    # Пользователь подтвержден после регистрации вручную
+    def authorization_user_with_invalid_email(self, email, password) -> Any:
+        response = self.auth_user(email, password)
+        CommonChecker.check_status_code_400(response, assertion_message="удалось авторизоваться")
+        return response
+
+    @allure.step("Проверка авторизации на не успешность c неверным паролем")
+    # Пользователь подтвержден после регистрации вручную
+    def authorization_user_with_invalid_password(self, email, password) -> Any:
+        response = self.auth_user(email, password)
+        CommonChecker.check_status_code_403(response, assertion_message="удалось авторизоваться")
+        return response
+
+    @allure.step("Получение токена авторизации")
     def auth_user_get_token(self, email, password):
-        auth_user = self.authorization_user(email, password)
+        auth_user = self.authorization_user_with_invalid_email(email, password)
         csrf_token = auth_user.cookies.get("csrftoken")
         session_id = auth_user.cookies.get("sessionid")
         self.request.cookies['Cookie'] = 'csrftoken=' + csrf_token + ";" + ' sessionid=' + session_id
@@ -48,7 +67,7 @@ class ApiSteps:
     @allure.step("Удаление пользователей")
     # Техникческий метод на удаление всех юзеров после регистраций и созданий альянсов
     def delete_users_api(self, emails) -> Any:
-        payload = self.data.get_payload_for_delete_users(emails)
+        payload = self.data.get_payload_only_email(emails)
         response = self.request.delete_users(payload)
         CommonChecker.check_status_code_200(response, assertion_message="Не удалось удалить")
 
@@ -60,23 +79,18 @@ class ApiSteps:
         CommonChecker.check_status_code_202(request, assertion_message="Не удалось выйти")
         return request
 
-    @allure.step("Заполнение данными пользователя")
-    # Заполнение после регистрации
-    def register_completion(self, name: str, status: bool):
-        payload = self.data.get_payloda_register_complition(name, status)
-        request = self.request.register_completion(payload)
-        CommonChecker.check_status_code_201(request, assertion_message="Не удалось заполнить")
-        return request
+    @allure.step("Запрос на изменение пароля")
+    def request_for_change_password(self, email) -> Any:
+        payload = self.data.get_payload_only_email(email)
+        response = self.request.change_password(payload)
+        return response
 
-    @allure.step("Login check")
-    # Пользователь выходит из системы
-    def login_check(self) -> Any:
-        request = self.request.login_check()
-        CommonChecker.check_status_code_200(request, assertion_message="Не удалось проверить")
-        return request
+    @allure.step("Проверка на успешность запроса на изменение пароля")
+    def check_status_for_change_password(self, email) -> Any:
+        response = self.request_for_change_password(email)
+        CommonChecker.check_status_code_200(response, assertion_message="Не удалось отправить запрос")
 
-    def details_about_ml_model(self, id_model) -> Any:
-        request = self.request.get_details_about_ml_model(id_model)
-        print(request.json())
-        CommonChecker.check_status_code_200(request, assertion_message="Модель не добавлена в альянс")
-        return request
+    @allure.step("Проверка на не успешность запроса на изменение пароля")
+    def check_status_for_change_password_with_invalid_data(self, email) -> Any:
+        response = self.request_for_change_password(email)
+        CommonChecker.check_status_code_400(response, assertion_message="Не удалось отправить запрос")

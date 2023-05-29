@@ -4,7 +4,7 @@ from sqlalchemy import bindparam, update
 
 from API.test_framework.database.db.user_service import UserServiceDB
 from API.test_framework.database.orm.base_config_db import BaseDB
-from API.test_framework.database.orm.usersevicedb import UserAccount, JointUser
+from API.test_framework.database.orm.usersevicedb import UserAccount, JointUser, Tokens
 
 
 class QueriesUserService:
@@ -24,4 +24,6 @@ class QueriesUserService:
             return session.execute(update(UserAccount).where(
                 UserAccount.email == user).values(confirmed=True))
 
-
+    def select_key_for_change_password(self) -> Union[Tokens, Any]:
+        with self.db.create_session() as session:
+            return session.query(Tokens.key).filter(Tokens.user_id_id == 12)

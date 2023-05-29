@@ -78,3 +78,8 @@ class MlModels(BaseModel):
     size = Column(String)
     owner_id = Column(Integer)
 
+class Tokens(BaseModel):
+    __tablename__ = "tokens"
+    created_at = Column(String)
+    key = Column(String)
+    user_id_id = Column(Integer)

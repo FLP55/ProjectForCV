@@ -20,22 +20,10 @@ class DataClient:
                 }
 
     @staticmethod
-    def get_payload_for_delete_users(emails: str) -> Any:
+    def get_payload_only_email(email: str) -> Any:
         return {
-            "emails": emails
+            "email": email
         }
-
-    @staticmethod
-    def get_payloda_register_complition(name: str, status: bool) -> Any:
-        return {
-                "first_name": name,
-                "last_name": "Заполнение",
-                "middle_name": "Данных",
-                "company": "Автотестовая компания",
-                "position": "AQA",
-                "phone": "800555777",
-                "is_business_admin": status
-            }
 
 
 
