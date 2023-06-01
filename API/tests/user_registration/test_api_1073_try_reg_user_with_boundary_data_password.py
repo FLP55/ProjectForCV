@@ -6,7 +6,7 @@ from API.test_framework.steps.steps_api import ApiSteps
 
 
 @allure.id("1073")
-@allure.title("1073.Граничные значения пароля")
+@allure.title("Граничные значения пароля")
 @pytest.mark.parametrize("boundary_data", boundary_password)
 def test_api_1073_try_reg_user_with_boundary_data_password(boundary_data):
     ApiSteps().check_status_code_after_register_with_invalid_data(

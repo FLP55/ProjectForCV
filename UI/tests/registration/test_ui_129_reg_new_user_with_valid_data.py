@@ -7,7 +7,7 @@ from UI.test_framework.pages.main_pages.main_page import MainPage
 
 @pytest.mark.ui
 @allure.id("129")
-@allure.title("129 Регистрация пользователя с валидными данными UI")
+@allure.title("Регистрация пользователя с валидными данными UI")
 def test_ui_129_reg_new_user_with_valid_data(browser_for_delete_user):
     # Открытие страницы регистрации
     MainPage(browser_for_delete_user).open_registration_page()

@@ -8,7 +8,7 @@ from API.test_framework.data.email.real_email import password
 
 @pytest.mark.ui
 @allure.id("774")
-@allure.title("774 Регистрация пользователя пустые поля UI")
+@allure.title("Регистрация пользователя пустые поля UI")
 def test_ui_774_fields_none(browser):
     page = MainPage(browser)
     #Открытие страницы регистрации

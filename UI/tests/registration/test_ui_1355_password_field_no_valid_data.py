@@ -8,7 +8,7 @@ from UI.test_framework.pages.main_pages.main_page import MainPage
 @pytest.mark.ui
 @pytest.mark.parametrize("expected_password", invalid_password)
 @allure.id("1355")
-@allure.title("1355 Ввод не валидных данных в поле Пароль")
+@allure.title("Ввод не валидных данных в поле Пароль")
 def test_ui_1355_password_field_no_valid_data(browser, expected_password):
     page = MainPage(browser)
     # Открытие страницы регистрации

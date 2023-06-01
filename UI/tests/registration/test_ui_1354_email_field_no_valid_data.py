@@ -9,7 +9,7 @@ from UI.test_framework.pages.main_pages.main_page import MainPage
 @pytest.mark.ui
 @pytest.mark.parametrize("expected_email", invalid_emails)
 @allure.id("1354")
-@allure.title("1354 Ввод невалидных данный в поле Электронная почта")
+@allure.title("Ввод невалидных данный в поле Электронная почта")
 def test_ui_1354_email_field_no_valid_data(browser, expected_email):
     page = MainPage(browser)
     # Открытие страницы регистрации
