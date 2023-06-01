@@ -94,3 +94,9 @@ class ApiSteps:
     def check_status_for_change_password_with_invalid_data(self, email) -> Any:
         response = self.request_for_change_password(email)
         CommonChecker.check_status_code_400(response, assertion_message="Не удалось отправить запрос")
+
+    @allure.step("Подтверждение смены пароля")
+    def confirm_change_password(self, token, password, confirm_password) -> Any:
+        payload = self.data.get_payload_for_confirm_change_password(token, password, confirm_password)
+        response = self.request.confirm_password(payload)
+        CommonChecker.check_status_code_200(response, assertion_message="Пароль не изменен")

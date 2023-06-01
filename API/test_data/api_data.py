@@ -31,5 +31,12 @@ class DataClient:
             "emails": email
         }
 
+    @staticmethod
+    def get_payload_for_confirm_change_password(token: str, password: str, confirm_password: str) -> Any:
+        return {
+            "token": token,
+            "password": password,
+            "password_confirmation": confirm_password
+        }
 
 

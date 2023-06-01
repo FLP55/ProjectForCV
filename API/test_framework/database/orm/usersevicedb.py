@@ -81,5 +81,5 @@ class MlModels(BaseModel):
 class Tokens(BaseModel):
     __tablename__ = "tokens"
     created_at = Column(String)
-    key = Column(String)
+    key = Column(String, primary_key=True)
     user_id_id = Column(Integer)

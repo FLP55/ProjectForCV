@@ -24,3 +24,6 @@ class RequestsForTestAPI:
 
     def change_password(self, payload: dict) -> Any:
         return self.request.post(url=f"{self.base_url}/auth/reset-password-request/", json=payload)
+
+    def confirm_password(self, payload: dict) -> Any:
+        return self.request.post(url=f"{self.base_url}/auth/reset-password-confirm/", json=payload)

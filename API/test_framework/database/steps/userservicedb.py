@@ -12,5 +12,7 @@ class StepsUserService:
         self.queries = QueriesUserService()
         self.db_checker = CheckerUserService()
 
-
+    def get_token_for_change_password(self, user_id):
+        requests = self.queries.select_key_for_change_password(user_id=user_id)
+        return requests
 

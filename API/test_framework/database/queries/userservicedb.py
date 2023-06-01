@@ -24,6 +24,6 @@ class QueriesUserService:
             return session.execute(update(UserAccount).where(
                 UserAccount.email == user).values(confirmed=True))
 
-    def select_key_for_change_password(self) -> Union[Tokens, Any]:
+    def select_key_for_change_password(self, user_id) -> Union[Tokens, Any]:
         with self.db.create_session() as session:
-            return session.query(Tokens.key).filter(Tokens.user_id_id == 12)
+            return session.query(Tokens.key).filter(Tokens.user_id_id == user_id)
