@@ -1,3 +1,5 @@
+import time
+
 import allure
 
 
@@ -107,21 +109,84 @@ class MainPage(BasePage):
         )
 
     @allure.step('Проверка наличия сообщение о вводе некорректного адреса почты')
-    def check_error_about_mismatch_email(self):
-        error_about_email = self.browser.find_element(
-            *self.locators_by.error_about_mismatch_email
-        ).text
+    def check_error_about_mismatch_email(self, locator):
+        error_about_email = self.browser.find_element(*locator).text
         CommonChecker.check_field_equals(
             error_about_email, self.error.message_mismatch_email,
             assertion_message="Электронная почта корректная"
         )
 
-    @allure.step('Проверка наличия сообщение о вводе некорректного пароля')
+    @allure.step('Проверка наличия сообщение о вводе некорректного пароля. поле регистрации')
     def check_error_about_mismatch_password(self):
         error_about_password = self.browser.find_element(
             *self.locators_by.error_about_mismatch_password
         ).text
         CommonChecker.check_field_equals(
             error_about_password, self.error.message_mismatch_password,
+            assertion_message="Пароль корректный"
+        )
+    @allure.step("Проверка наличия элемента, что пароль неверный. поле авторизации")
+    def check_error_about_invalid_password(self):
+        text_error = self.browser.find_element(*self.locators_by.error_about_mismatch_password_auth).text
+        while text_error != "Неверный пароль.":
+            text_error = self.browser.find_element(
+                *self.locators_by.error_about_mismatch_password
+            ).text
+            time.sleep(1)
+        CommonChecker.check_field_equals(
+            text_error, self.error.message_invalid_password,
+            assertion_message="Пароль корректный"
+        )
+    @allure.step("Авторизация")
+    def auth_user(self, email: str, password: str):
+        email_field = self.browser.find_element(*self.locators_by.email_auth_field_locator)
+        email_field.click()
+        email_field.send_keys(email)
+        password_field = self.browser.find_element(*self.locators_by.password_auth_field_locator)
+        password_field.click()
+        password_field.send_keys(password)
+        button = self.browser.find_element(*self.locators_by.button_continue_auth)
+        button.click()
+        time.sleep(3)
+    @allure.step("Попытка авторизации без поля email")
+    def auth_user_without_email(self, password: str):
+        password_field = self.browser.find_element(*self.locators_by.password_auth_field_locator)
+        password_field.click()
+        password_field.send_keys(password)
+        self.browser.find_element(*self.locators_by.button_continue_auth).is_enabled()
+    @allure.step("Попытка авторизации без пароля")
+    def auth_user_without_password(self, email: str):
+        email_field = self.browser.find_element(*self.locators_by.email_auth_field_locator)
+        email_field.click()
+        email_field.send_keys(email)
+        self.browser.find_element(*self.locators_by.button_continue_auth).is_enabled()
+
+    @allure.step('Очистка полей Авторизации')
+    def clear_all_auth_field(self):
+        email_field = self.browser.find_element(*self.locators_by.email_auth_field_locator)
+        email_field.send_keys(Keys.CONTROL + "a")
+        email_field.send_keys(Keys.DELETE)
+        password_field = self.browser.find_element(*self.locators_by.password_auth_field_locator)
+        password_field.send_keys(Keys.CONTROL + "a")
+        password_field.send_keys(Keys.DELETE)
+
+    @allure.step("Проверка наличия элемента 'Войти'")
+    def check_enaybled_elements_enter(self):
+        self.is_element_present(self.locators_by.element_enter)
+
+    @allure.step("Проверка, что кнопка 'Войти' не активна")
+    def check_disabled_button_enter(self):
+        self.browser.find_element(*self.locators_by.button_continue_auth).is_enabled()
+
+    @allure.step("Смена пароля")
+    def change_password(self, email: str):
+        self.browser.find_element(*self.locators_by.button_change_password).click()
+        email_field = self.browser.find_element(*self.locators_by.field_email_for_change_password)
+        email_field.click()
+        email_field.send_keys(email)
+        self.browser.find_element(*self.locators_by.button_confirm_change_password).click()
+        confirm_change = self.browser.find_element(*self.locators_by.confirm_change_password).text
+        CommonChecker.check_field_equals(
+            confirm_change, self.error.message_confirm_change_password,
             assertion_message="Пароль корректный"
         )

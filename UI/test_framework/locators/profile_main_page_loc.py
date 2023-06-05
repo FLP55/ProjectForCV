@@ -2,15 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class LocatorsProfileMainPage:
-    logo_JointML = (By.XPATH, "//h2[text()='Заполнение профиля']")
-    name_field_locator = (By.XPATH, "//input[@id='firstName']")
-    last_name_field_locator = (By.XPATH, "//input[@id='lastName']")
-    middle_name_field_locator = (By.XPATH, "//input[@id='middleName']")
-    phone_field_locator = (By.XPATH, "//input[@id='phone']")
-    company_field_locator = (By.XPATH, "//input[@id='company']")
-    position_field_locator = (By.XPATH, "//input[@id='position']")
-    button_continue_locator = (By.XPATH, "//button[text()='Продолжить']")
-    nav_menu_alliance_locator = (By.XPATH, "//p[text()='Альянсы']")
-    header_confirm_user_locator = (By.XPATH, "//h3[text()='Данные о пользователе']")
-    create_alliance_locator = (By.XPATH, "//button[text()='Создать альянс']")
-
+    element_profile = (By.XPATH, '//*[@id="root"]/main/section[2]/div/section/div/h2')
+    button_user_menu = (By.XPATH, '//*[@id="root"]/main/header/label/div[2]/button')
+    button_quit = (By.XPATH, '//*[@id="root"]/main/header/label/div[2]/ul/li[5]')
+    confirm_quit = (By.XPATH, '//*[@id="root"]/div[2]/div[1]/div/div/button[1]')

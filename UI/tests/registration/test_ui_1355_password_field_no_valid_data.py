@@ -2,6 +2,7 @@ import pytest
 import allure
 
 from API.test_framework.data.email.real_email import invalid_password
+from UI.test_framework.locators.main_page_loc import LocatorsMainPage
 from UI.test_framework.pages.main_pages.main_page import MainPage
 
 

@@ -3,6 +3,7 @@ import pytest
 import allure
 
 from API.test_framework.data.email.real_email import invalid_emails
+from UI.test_framework.locators.main_page_loc import LocatorsMainPage
 from UI.test_framework.pages.main_pages.main_page import MainPage
 
 
@@ -17,4 +18,4 @@ def test_ui_1354_email_field_no_valid_data(browser, expected_email):
     #Ввод данных в поле Электронная почта
     page.enter_data_to_email_reg_field(email=expected_email)
     #Проверка наличия сообщения
-    page.check_error_about_mismatch_email()
+    page.check_error_about_mismatch_email(LocatorsMainPage().error_about_mismatch_email)

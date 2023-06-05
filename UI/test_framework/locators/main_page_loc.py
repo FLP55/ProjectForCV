@@ -15,15 +15,17 @@ class LocatorsMainPage:
     #JS скрипт, для взаимодействия с псевдоэлементом
     checkbox_reg_locator = 'document.getElementsByName("checkBox")[0].click();'
 
+    #Oкно авторизации
+    email_auth_field_locator = (By.XPATH, '//*[@id="email"]')
+    password_auth_field_locator = (By.XPATH, '//*[@id="loginPassword"]')
+    button_continue_auth = (By.XPATH, '//*[@id="root"]/section/div[1]/form/button')
+    element_enter = (By.XPATH, '//*[@id="root"]/section/div[1]/form/h2')
+    error_about_mismatch_email_auth = (By.XPATH, '//*[@id="root"]/section/div[1]/form/div[1]/div[1]/div[2]')
+    error_about_mismatch_password_auth = (By.XPATH, '//*[@id="root"]/section/div[1]/form/div[1]/div[2]/div[2]/span')
+    button_change_password = (By.XPATH, '//*[@id="root"]/section/div[1]/form/div[1]/div[2]/div[2]/a')
+    field_email_for_change_password = (By.XPATH, '//*[@id="email"]')
+    button_confirm_change_password = (By.XPATH, '//*[@id="root"]/section/div[1]/form/button')
+    confirm_change_password = (By.XPATH, '//*[@id="root"]/section/div[1]/div[2]/div[1]')
 
-
-    password_text_field_locator_login = (By.XPATH, '//input[@id="loginPassword"]')
-    password_text_field_locator_register = (By.XPATH, '//input[@id="password"]')
-    button_hidden_password_locator = (By.XPATH, '//div[contains(@class, "TextInput_icon")]')
-    button_hidden_repeat_password_locator = (By.XPATH, '//*[@id="root"]/div/form/div[4]/div[1]/div')
-    checkbox_personal_data = (By.XPATH, '//span[@class="LabeledCheckbox_content__c1PGx"]')
-    button_continue = (By.XPATH, '//button[text()="Продолжить"]')
-    text_finish_page = (By.XPATH, '//span[text()="uiemailreg@aston.ru"]')
-    button_login = (By.XPATH, '//button[text()="Войти"]')
 
 
