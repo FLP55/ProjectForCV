@@ -4,6 +4,7 @@ from API.test_framework.data.email.real_email import password
 from API.test_framework.database.steps.userservicedb import StepsUserService
 from API.test_framework.steps.steps_api import ApiSteps
 
+
 @allure.id("1425")
 @allure.title("Подтверждение смены пароля")
 def test_api_1425_confirm_change_password():
