@@ -105,6 +105,6 @@ def __create_chrome_ci():
     chrom_options.add_argument("--no-sandbox")
     chrom_options.add_argument("--headless")
     chrom_options.add_argument("--disable-gpu")
-    browser_chrome = webdriver.Remote("http://127.0.0.1:4444/wd/hub", options=chrom_options)
+    browser_chrome = webdriver.Chrome(chrome_options=chrom_options)
     browser_chrome.set_window_size(1920, 1080)
     return browser_chrome
