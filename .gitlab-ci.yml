@@ -15,7 +15,7 @@ variables:  # Переменные
 
 Run_Job: # Название job
  stage: testing # Первый stage, который нужно выполнить
- image: nikolaymedvedev/aqa_python_gor # Образ выполнения
+ image: floopy55/skolkovo_1 # Образ выполнения
  before_script:
    - pip install -r requirements.txt  # предварительный скрипт # Образ выполнения
  script:
