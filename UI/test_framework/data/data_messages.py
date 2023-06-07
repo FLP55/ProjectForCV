@@ -6,3 +6,5 @@ class DataMessages:
     message_mismatch_password = "Некорректный пароль"
     message_invalid_password = "Неверный пароль."
     message_confirm_change_password = "На почту Pavel@mail.ru отправлено письмо. Оно придёт в течение 10 минут."
+    message_invalid_data = "Введите корректные символы"
+    message_invalid_phone_number = 'Номер телефона должен содержать 10 символов'

@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.utils import ChromeType
 
-from API.test_framework.data.email.real_email import super_user, password, valid_emails
+from API.test_framework.data.email.real_email import super_user, password, valid_emails, email_for_api_user
 from API.test_framework.steps.steps_api import ApiSteps
 from UI.test_framework.pages.main_pages.main_page import MainPage
 from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainPage
@@ -30,6 +30,20 @@ def browser(request):
     browser = browser_set(request)
     browser.implicitly_wait(5)
     MainPage(browser).open()
+    yield browser
+    try:
+        ProfileMainPage(browser)
+    except TimeoutException as err:
+        return err
+    finally:
+        browser.quit()
+
+@pytest.fixture(scope="function")
+def browser_with_auth(request):
+    browser = browser_set(request)
+    browser.implicitly_wait(5)
+    MainPage(browser).open()
+    MainPage(browser).auth_user(email=email_for_api_user, password=password)
     yield browser
     try:
         ProfileMainPage(browser)

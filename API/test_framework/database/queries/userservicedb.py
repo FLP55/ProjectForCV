@@ -11,19 +11,10 @@ class QueriesUserService:
     def __init__(self, db: BaseDB = None):
         self.db = db or UserServiceDB()
 
-    def select_all_data_from_table_user_account(self) -> Union[UserAccount, Any]:
-        with self.db.create_session() as session:
-            return session.query(UserAccount.id).first()
-
-    def select_id_user_from_user_account(self) -> Union[UserAccount, Any]:
-        with self.db.create_session() as session:
-            return session.query(UserAccount.id).filter(UserAccount.email == "autotestsmokeU@mail.ru")
-
-    def confirm_email_user(self, user: str) -> Union[UserAccount, Any]:
-        with self.db.create_session() as session:
-            return session.execute(update(UserAccount).where(
-                UserAccount.email == user).values(confirmed=True))
-
     def select_key_for_change_password(self, user_id) -> Union[Tokens, Any]:
         with self.db.create_session() as session:
             return session.query(Tokens.key).filter(Tokens.user_id_id == user_id)
+
+    def select_name_from_joint_user(self, user_id) -> Union[JointUser, Any]:
+        with self.db.create_session() as session:
+            return session.query(JointUser.first_name).filter(JointUser.id == user_id)

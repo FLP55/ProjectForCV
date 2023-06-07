@@ -16,3 +16,12 @@ class StepsUserService:
         requests = self.queries.select_key_for_change_password(user_id=user_id)
         return requests
 
+    def get_name_from_joint_user(self, user_id):
+        requests = self.queries.select_name_from_joint_user(user_id=user_id)
+        return requests
+
+    def check_name_that_did_not_change(self, first_name, second_name):
+        CommonChecker.check_field_equals(
+            first_name, second_name,
+            assertion_message="Имя не совпадает"
+        )

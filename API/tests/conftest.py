@@ -20,11 +20,3 @@ def delete_data():
 
 
 
-
-@pytest.fixture
-def get_db_session():
-    session = DBCreateSession().create_session()
-    try:
-        yield session
-    finally:
-        DBCreateSession().close_session()
