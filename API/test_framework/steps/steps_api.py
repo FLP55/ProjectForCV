@@ -101,3 +101,14 @@ class ApiSteps:
         payload = self.data.get_payload_for_confirm_change_password(token, password, confirm_password)
         response = self.request.confirm_password(payload)
         CommonChecker.check_status_code_200(response, assertion_message="Пароль не изменен")
+
+    @allure.step("Получение данных о пользователе")
+    def get_data_about_user(self):
+        response = self.request.get_user_info()
+        CommonChecker.check_status_code_200(response, assertion_message="Данные не получен")
+
+    @allure.step("Редактирование профиля")
+    def edit_profile(self, first_name, second_name, last_name, phone_number) -> Any:
+        payload = self.data.get_payload_for_changes_data_about_user(first_name, second_name, last_name, phone_number)
+        response = self.request.change_user_info(payload)
+        CommonChecker.check_status_code_200(response, assertion_message="Данные не изменены")
