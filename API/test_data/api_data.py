@@ -39,4 +39,13 @@ class DataClient:
             "password_confirmation": confirm_password
         }
 
+    @staticmethod
+    def get_payload_for_changes_data_about_user(first_name: str, last_name: str, second_name: str, phone_number: str):
+        return {
+            "first_name": first_name,
+            "last_name": last_name,
+            "middle_name": second_name,
+            "position": "Сотрудник",
+            "phone": phone_number
+        }
 
