@@ -16,7 +16,6 @@ variables:  # Переменные
 Run_Job: # Название job
  stage: testing # Первый stage, который нужно выполнить
  image: floopy55/skolkovo_1 # Образ выполнения
-
  script:
    - pytest -n=$PROCESS -v -s -k "test_${TEST_NAME}" . --alluredir=./allure-results
  allow_failure: true # Это позволит нам продолжить выполнение пайплайна в случае, если тесты упали.

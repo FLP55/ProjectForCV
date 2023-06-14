@@ -8,6 +8,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.utils import ChromeType
 
 from API.test_framework.data.email.real_email import super_user, password, valid_emails, email_for_api_user
+from API.test_framework.database.steps.userservicedb import StepsUserService
 from API.test_framework.steps.steps_api import ApiSteps
 from UI.test_framework.pages.main_pages.main_page import MainPage
 from UI.test_framework.pages.profile_pages.profile_main_page import ProfileMainPage
@@ -52,6 +53,25 @@ def browser_with_auth(request):
     finally:
         browser.quit()
 
+@pytest.fixture(scope="function")
+def browser_with_delete_model(request):
+    browser = browser_set(request)
+    browser.implicitly_wait(5)
+    MainPage(browser).open()
+    MainPage(browser).auth_user(email=email_for_api_user, password=password)
+    yield browser
+    try:
+        ApiSteps().auth_user_get_token(email=email_for_api_user, password=password)
+        id_model = StepsUserService().get_id_ml_model(ml_name="Модель для автотестов12")[0][0]
+        print(id_model)
+        ApiSteps().delete_model(id_ml=id_model)
+    except TimeoutException as err:
+        return err
+    finally:
+        browser.quit()
+
+
+
 @pytest.fixture
 def browser_for_delete_user(request):
     browser = browser_set(request)
@@ -84,7 +104,15 @@ def browser_set(request):
 
 
 def __create_chrome():
-    browser_chrome = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    options = webdriver.ChromeOptions()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-setuid-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size-minimize_window")
+
+    browser_chrome = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
+    browser_chrome.delete_all_cookies()
     browser_chrome.maximize_window()
     return browser_chrome
 

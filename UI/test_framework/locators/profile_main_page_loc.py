@@ -19,3 +19,4 @@ class LocatorsProfileMainPage:
     error_invalid_data_field_second_name = (By.XPATH, '//*[@id="root"]/main/section[2]/div/section/div/form/div[2]/div[2]/div[2]')
     error_invalid_data_field_last_name = (By.XPATH, '//*[@id="root"]/main/section[2]/div/section/div/form/div[2]/div[3]/div[2]')
     error_invalid_data_field_phone_number = (By.XPATH, '//*[@id="root"]/main/section[2]/div/section/div/form/div[2]/div[4]/div[2]')
+    button_ml_model = (By.XPATH, '//*[@id="root"]/main/section[1]/div/nav/li[1]/a')

@@ -33,3 +33,6 @@ class RequestsForTestAPI:
 
     def change_user_info(self, payload: dict) -> Any:
         return self.request.patch(url=f"{self.base_url}/user/", cookies=self.cookies, json=payload)
+
+    def delete_ml_models(self, id_ml: str) -> Any:
+        return self.request.delete(url=f"{self.base_url}/mlmodels/{id_ml}/", cookies=self.cookies)
