@@ -1,0 +1,68 @@
+import time
+
+import allure
+from selenium.webdriver import Keys
+from selenium.webdriver.support.select import Select
+
+from API.test_framework.helpers.main_checkers import CommonChecker
+from UI.app_data.base_page import BasePage
+from UI.test_data.url_data import CREATE_MODEL
+from UI.test_framework.data.data_main_page import DataMainPage
+from UI.test_framework.data.data_messages import DataMessages
+from UI.test_framework.locators.create_new_model_loc import LocatorsCreateModel
+
+
+
+
+class CreateMlModel(BasePage):
+    def __init__(self, browser, url=None) -> None:
+        super().__init__(browser, url)
+        self.locators_by = LocatorsCreateModel()
+        self.data = DataMainPage()
+        self.error = DataMessages()
+        self.url = CREATE_MODEL
+
+    @allure.step("Заполнение поля имя мл-модели")
+    def input_field_name(self, name):
+        field = self.browser.find_element(*self.locators_by.name_field)
+        field.click()
+        field.send_keys(name)
+        return field
+
+    @allure.step("Заполнение поля тип задач")
+    def input_field_type(self):
+        self.browser.find_element(*self.locators_by.type_field).click()
+        self.browser.find_element(*self.locators_by.type_class).click()
+
+
+    @allure.step("Заполнение поля категория")
+    def input_category_field(self):
+        self.browser.find_element(*self.locators_by.category_field).click()
+        self.browser.find_element(*self.locators_by.first_category).click()
+
+    @allure.step("Заполнение поля тип мл-модели")
+    def input_field_type_ml_model(self, type):
+        field = self.browser.find_element(*self.locators_by.type_model_field)
+        field.click()
+        field.send_keys(type)
+        return field
+
+    @allure.step("Заполнение поля Описание")
+    def input_field_description(self, description):
+        field = self.browser.find_element(*self.locators_by.description_field)
+        field.click()
+        field.send_keys(description)
+        return field
+
+    @allure.step("Клик по тегу Банки")
+    def click_tag(self):
+        self.browser.find_element(*self.locators_by.teg_bank).click()
+
+    @allure.step("Добавление файла")
+    def add_file(self):
+        field = self.browser.find_element(*self.locators_by.input_file)
+        field.send_keys('E:\Видео для работы\файлы для работы\weights.py')
+
+    @allure.step("клик на кнопку добавить")
+    def click_button_add(self):
+        self.browser.find_element(*self.locators_by.button_add).click()
