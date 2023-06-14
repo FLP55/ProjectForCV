@@ -1,8 +1,7 @@
 import time
 
 import allure
-from selenium.webdriver import Keys
-from selenium.webdriver.support.select import Select
+
 
 from API.test_framework.helpers.main_checkers import CommonChecker
 from UI.app_data.base_page import BasePage
@@ -66,3 +65,11 @@ class CreateMlModel(BasePage):
     @allure.step("клик на кнопку добавить")
     def click_button_add(self):
         self.browser.find_element(*self.locators_by.button_add).click()
+
+    @allure.step('Проверка наличия ошибке о повторном названии модели')
+    def check_error_about_repeated_name(self):
+        message = self.browser.find_element(*self.locators_by.message_about_repeated_name).text
+        CommonChecker.check_field_equals(
+            message, self.error.message_repeated_name,
+            assertion_message="модель еще не создана"
+        )
