@@ -62,7 +62,7 @@ def browser_with_delete_model(request):
     yield browser
     try:
         ApiSteps().auth_user_get_token(email=email_for_api_user, password=password)
-        id_model = StepsUserService().get_id_ml_model(ml_name="Модель для автотестов12")[0][0]
+        id_model = StepsUserService().get_id_ml_model(ml_name="Модель для автотестов12")[-1][0]
         print(id_model)
         ApiSteps().delete_model(id_ml=id_model)
     except TimeoutException as err:
@@ -91,11 +91,7 @@ def browser_for_delete_user(request):
 
 def browser_set(request):
     browser_name = request.config.getoption("browser_name")
-    if browser_name.lower() == "chrome":
-        if env == "linux":
-            return __create_chrome_ci()
-        return __create_chrome()
-    elif browser_name.lower() == "firefox" or "ff":
+    if browser_name.lower() == "firefox" or "ff":
         return __create_firefox()
     elif browser_name.lower() == "chromium":
         return __create_chromium()
@@ -106,11 +102,8 @@ def browser_set(request):
 def __create_chrome():
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
-    options.add_argument("--disable-setuid-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
-    options.add_argument("--window-size-minimize_window")
-
     browser_chrome = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=options)
     browser_chrome.delete_all_cookies()
     browser_chrome.maximize_window()

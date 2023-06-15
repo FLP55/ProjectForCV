@@ -1,3 +1,5 @@
+import time
+
 import allure
 
 from UI.test_framework.data.user_data import description
