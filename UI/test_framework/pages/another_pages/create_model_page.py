@@ -60,7 +60,7 @@ class CreateMlModel(BasePage):
     @allure.step("Добавление файла")
     def add_file(self):
         field = self.browser.find_element(*self.locators_by.input_file)
-        field.send_keys('E:\Видео для работы\файлы для работы\weights.py')
+        field.send_keys('E:/Видео для работы/файлы для работы/weights.py')
 
     @allure.step("клик на кнопку добавить")
     def click_button_add(self):

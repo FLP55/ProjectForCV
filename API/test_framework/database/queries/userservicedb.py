@@ -1,10 +1,9 @@
 from typing import Any, Union
 
-from sqlalchemy import bindparam, update
 
 from API.test_framework.database.db.user_service import UserServiceDB
 from API.test_framework.database.orm.base_config_db import BaseDB
-from API.test_framework.database.orm.usersevicedb import UserAccount, JointUser, Tokens, MlModels
+from API.test_framework.database.orm.usersevicedb import JointUser, Tokens, MlModels
 
 
 class QueriesUserService:
