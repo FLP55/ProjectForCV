@@ -18,4 +18,4 @@ def test_ui_781_try_edit_model_with_space(browser_with_auth):
     # Заполнения поля тип
     MlModels(browser_with_auth).input_field_type("   ")
     # Нажатие на кнопку сохранить
-    MlModels(browser_with_auth).click_save_button()
+    MlModels(browser_with_auth).check_button_save()
