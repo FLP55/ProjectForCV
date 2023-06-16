@@ -90,7 +90,11 @@ def browser_for_delete_user(request):
 
 def browser_set(request):
     browser_name = request.config.getoption("browser_name")
-    if browser_name.lower() == "firefox" or "ff":
+    if browser_name.lower() == "chrome":
+        if env == "linux":
+            return __create_chrome_ci()
+        return __create_chrome()
+    elif browser_name.lower() == "firefox" or "ff":
         return __create_firefox()
     elif browser_name.lower() == "chromium":
         return __create_chromium()
