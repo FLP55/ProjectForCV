@@ -17,6 +17,7 @@ Run_Job: # Название job
  stage: testing # Первый stage, который нужно выполнить
  image: floopy55/skolkovo_1 # Образ выполнения
  script:
+   - sudo mount -t tmpfs -o rw,nosuid,nodev,noexec,relatime,size=512M tmpfs /dev/shm
    - pytest -n=$PROCESS -v -s -k "test_${TEST_NAME}" . --alluredir=./allure-results
  allow_failure: true # Это позволит нам продолжить выполнение пайплайна в случае, если тесты упали.
  artifacts: # Сущность, с помощью которой, мы сохраним результат тестирования.
