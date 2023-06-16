@@ -112,3 +112,8 @@ class ApiSteps:
         payload = self.data.get_payload_for_changes_data_about_user(first_name, second_name, last_name, phone_number)
         response = self.request.change_user_info(payload)
         CommonChecker.check_status_code_200(response, assertion_message="Данные не изменены")
+
+    @allure.step("Удаление мл-модели")
+    def delete_model(self, id_ml) -> Any:
+        response = self.request.delete_ml_models(id_ml=id_ml)
+        return response

@@ -102,3 +102,7 @@ class PersonalAreaPage(BasePage):
     @allure.step("Клик на кнопку отмена")
     def click_cancel_button(self):
         self.browser.find_element(*self.locators_by.button_cancel_change).click()
+
+    @allure.step("Клик по вкладке 'ML-модели'")
+    def click_ml_model(self):
+        self.browser.find_element(*self.locators_by.button_ml_model).click()

@@ -25,3 +25,7 @@ class StepsUserService:
             first_name, second_name,
             assertion_message="Имя не совпадает"
         )
+
+    def get_id_ml_model(self, ml_name):
+        requests = self.queries.select_id_from_ml_model(ml_name=ml_name)
+        return requests
