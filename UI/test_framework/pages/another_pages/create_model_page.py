@@ -60,6 +60,8 @@ class CreateMlModel(BasePage):
     @allure.step("Добавление файла")
     def add_file(self):
         field = self.browser.find_element(*self.locators_by.input_file)
+        self.browser.execute_script(
+            "for (const [key, value] of Object.entries(document.getElementsByTagName('input'))) {value.setAttribute('style', 'opacity: 1') }")
         upload ='E:\\Видео для работы\\файлы для работы\\weights.py'
         field.send_keys(upload)
 
