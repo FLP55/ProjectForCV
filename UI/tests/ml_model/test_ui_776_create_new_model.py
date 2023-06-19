@@ -31,6 +31,8 @@ def test_ui_776_create_new_model(browser_with_delete_model):
     # выбор тега
     CreateMlModel(browser_with_delete_model).click_tag()
     # добавление файла
-    CreateMlModel(browser_with_delete_model).add_file(file_path=config_path + b(os_name) + "MyTask6.py")
+    CreateMlModel(browser_with_delete_model).add_file(
+        file_path=config_path + b(os_name) + "UI\\tests\ml_model\MyTask6.py"
+    )
     # клик на кнопку добавить
     CreateMlModel(browser_with_delete_model).click_button_add()

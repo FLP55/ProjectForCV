@@ -16,4 +16,4 @@ default_timeout = 120
 verification_timeout = 80
 
 # файл для загрузки
-config_path = os.path.abspath('')
+config_path = os.path.dirname(os.path.abspath(__file__))
