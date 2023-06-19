@@ -1,9 +1,14 @@
 import allure
+import platform
 
 from UI.test_framework.data.user_data import description
 from UI.test_framework.pages.another_pages.create_model_page import CreateMlModel
 from UI.test_framework.pages.another_pages.ml_models_page import MlModels
 from UI.test_framework.pages.personal_profile_pages.profile_general_information_page import PersonalAreaPage
+from config import config_path
+
+os_name = platform.system()
+b = lambda sys_name: '/' if sys_name == 'Linux' else '\\'
 
 
 @allure.id("776")
@@ -26,6 +31,6 @@ def test_ui_776_create_new_model(browser_with_delete_model):
     # выбор тега
     CreateMlModel(browser_with_delete_model).click_tag()
     # добавление файла
-    CreateMlModel(browser_with_delete_model).add_file()
+    CreateMlModel(browser_with_delete_model).add_file(file_path=config_path + b(os_name) + "MyTask6.py")
     # клик на кнопку добавить
     CreateMlModel(browser_with_delete_model).click_button_add()

@@ -1,5 +1,5 @@
 import time
-
+import os
 import allure
 
 from selenium.webdriver.remote.file_detector import LocalFileDetector
@@ -11,7 +11,6 @@ from UI.test_data.url_data import CREATE_MODEL
 from UI.test_framework.data.data_main_page import DataMainPage
 from UI.test_framework.data.data_messages import DataMessages
 from UI.test_framework.locators.create_new_model_loc import LocatorsCreateModel
-
 
 
 
@@ -60,11 +59,9 @@ class CreateMlModel(BasePage):
         self.browser.find_element(*self.locators_by.teg_bank).click()
 
     @allure.step("Добавление файла")
-    def add_file(self):
+    def add_file(self, file_path):
         field = self.browser.find_element(*self.locators_by.input_file)
-        self.browser.file_detector = LocalFileDetector()
-        upload = 'C:/Users/Паша/PycharmProjects/aqa/UI/tests/MyTask6.py'
-        field.send_keys(upload)
+        field.send_keys(file_path)
 
 
     @allure.step("клик на кнопку добавить")

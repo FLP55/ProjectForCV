@@ -1,3 +1,4 @@
+import os
 from sys import platform
 
 # Окружение для запуска тестов
@@ -13,3 +14,6 @@ verification_interval = 4
 # Таймаут
 default_timeout = 120
 verification_timeout = 80
+
+# файл для загрузки
+config_path = os.path.abspath('')
