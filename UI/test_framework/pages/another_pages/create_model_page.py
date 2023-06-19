@@ -63,7 +63,7 @@ class CreateMlModel(BasePage):
     def add_file(self):
         field = self.browser.find_element(*self.locators_by.input_file)
         self.browser.file_detector = LocalFileDetector()
-        upload = 'E:/Видео для работы/файлы для работы/weights.py'
+        upload = 'C:/Users/Паша/PycharmProjects/aqa/UI/tests/MyTask6.py'
         field.send_keys(upload)
 
 
