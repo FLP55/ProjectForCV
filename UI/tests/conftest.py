@@ -62,7 +62,7 @@ def browser_with_delete_model(request):
     yield browser
     try:
         ApiSteps().auth_user_get_token(email=email_for_api_user, password=password)
-        id_model = StepsUserService().get_id_ml_model(ml_name="Модель для автотестов12")[0]
+        id_model = StepsUserService().get_id_ml_model(ml_name="Модель для автотестов12")[0][0]
         print(id_model)
         ApiSteps().delete_model(id_ml=id_model)
     except TimeoutException as err:
