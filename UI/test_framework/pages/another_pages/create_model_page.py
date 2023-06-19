@@ -1,10 +1,9 @@
 import time
 
 import allure
-import keyboard
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.remote.file_detector import LocalFileDetector
+
 
 from API.test_framework.helpers.main_checkers import CommonChecker
 from UI.app_data.base_page import BasePage
@@ -62,16 +61,9 @@ class CreateMlModel(BasePage):
 
     @allure.step("Добавление файла")
     def add_file(self):
-        # element = WebDriverWait(self.browser, 10).until(
-        #     EC.element_to_be_clickable((By.CSS_SELECTOR, "div[class='con-input-upload']")))
-        # element.click()
-        # # Ждем пока откроется окно с выбором файла.
-        # time.sleep(10)
-        # # Заполняем поле ввода пути и жмем на Enter.
-        # keyboard.write(r'E:\Видео для работы\файлы для работы\weights.py')
-        # keyboard.press('enter')
         field = self.browser.find_element(*self.locators_by.input_file)
-        upload ='E:\Видео для работы\файлы для работы\weights.py'
+        self.browser.file_detector = LocalFileDetector()
+        upload = 'E:\Видео для работы\файлы для работы\weights.py'
         field.send_keys(upload)
 
 
@@ -97,4 +89,5 @@ class CreateMlModel(BasePage):
     def disable_opacity(self):
         """ disable all opacity in input[type='file'] """
         return self.browser.execute_script(
-            "for (const [key, value] of Object.entries(document.getElementsByTagName('input'))) { value.setAttribute('style', 'opacity: 1') }")
+            "for (const [key, value] of Object.entries(document.getElementsByTagName('input'))) { value.setAttribute('style', 'opacity: 1') }"
+        )

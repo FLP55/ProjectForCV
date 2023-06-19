@@ -25,7 +25,6 @@ def test_ui_776_create_new_model(browser_with_delete_model):
     CreateMlModel(browser_with_delete_model).input_field_description(description=description)
     # выбор тега
     CreateMlModel(browser_with_delete_model).click_tag()
-    CreateMlModel(browser_with_delete_model).disable_opacity()
     # добавление файла
     CreateMlModel(browser_with_delete_model).add_file()
     # клик на кнопку добавить
