@@ -63,5 +63,5 @@ class MlModels(BasePage):
 
     @allure.step('Проверка, что кнопка сохранить не активна')
     def check_button_save(self):
-        buttton = self.browser.find_element(*self.locators_by.button_save_change)
-        buttton.is_enabled()
+        button = self.browser.find_element(*self.locators_by.button_save_change)
+        button.is_enabled()

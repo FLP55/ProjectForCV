@@ -132,4 +132,5 @@ def __create_chrome_ci():
     chrom_options.add_argument('--disable-dev-shm-usage')
     browser_chrome = webdriver.Chrome(chrome_options=chrom_options)
     browser_chrome.set_window_size(1920, 1080)
+    browser_chrome.Detec(new LocalFileDetector())
     return browser_chrome
