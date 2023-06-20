@@ -13,3 +13,8 @@ email_for_api_user = "Pavel@mail.ru"
 email_for_reg = "Pavel1@mail.ru"
 password = "Qwerty55"
 boundary_password = ["Qwerty5", "QwertQwertQwertQwertQwertQwertQwertQwertQwertQwertQwert", "qwertyuuuuyt"]
+
+#Данные для создания моделей
+id_model = "1023"
+name_model = "Модель для автотестов Павла"
+description = "Модель для автотестов ПавлаМодель для автотестов ПавлаМодель для автотестов ПавлаМодель для автотестов Павла"

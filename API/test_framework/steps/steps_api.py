@@ -117,3 +117,35 @@ class ApiSteps:
     def delete_model(self, id_ml) -> Any:
         response = self.request.delete_ml_models(id_ml=id_ml)
         return response
+
+    @allure.step("Создание модели")
+    def create_model(self, id, name, model_type, description) -> Any:
+        payload = self.data.get_payload_for_create_model(id, name, model_type, description)
+        response = self.request.create_model(payload)
+        return response
+
+    @allure.step("Проверка успешности создание модели")
+    def check_success_create_model(self) -> Any:
+        response = self.create_model()
+        CommonChecker.check_status_code_200(response, assertion_message="Модель не создалась")
+
+    @allure.step("Проверка не успешности создание модели")
+    def check_un_success_create_model(self) -> Any:
+        response = self.create_model()
+        CommonChecker.check_status_code_400(response, assertion_message="Модель создалась")
+
+    @allure.step("редактирование модели")
+    def edit_model(self, id_ml, name, model_type, description) -> Any:
+        payload = self.data.get_payload_for_edit_model(name, model_type, description)
+        response = self.request.edit_model(payload, id_ml)
+        return response
+
+    @allure.step("Проверка успешности редактирования модели")
+    def check_success_edit_model(self) -> Any:
+        response = self.edit_model()
+        CommonChecker.check_status_code_200(response, assertion_message="Модель не отредактировалась")
+
+    @allure.step("Проверка не успешности редактирования модели")
+    def check_un_success_edit_model(self) -> Any:
+        response = self.edit_model()
+        CommonChecker.check_status_code_400(response, assertion_message="Модель создалась")

@@ -18,5 +18,9 @@ def delete_data():
     ApiSteps().delete_users_api(emails=valid_emails)
 
 
-
-
+@pytest.fixture(scope="function")
+def auth_user_and_delete_model():
+    ApiSteps().auth_user_get_token(email=email_for_api_user, password=password)
+    return auth_user_and_delete_model
+    yield auth_user_and_delete_model
+    ApiSteps().delete_model(id_ml="1023")

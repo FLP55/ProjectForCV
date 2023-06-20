@@ -49,3 +49,21 @@ class DataClient:
             "phone": phone_number
         }
 
+    @staticmethod
+    def get_payload_for_create_model(id: str, name: str, model_type: str, description: str):
+        return {
+            "id": id,
+            "name": name,
+            "model_type": model_type,
+            "task": "1",
+            "description": description,
+            "category": "2"
+        }
+
+    @staticmethod
+    def get_payload_for_edit_model(name: str, model_type: str, description: str):
+        return {
+            "name": name,
+            "model_type": model_type,
+            "description": description,
+        }

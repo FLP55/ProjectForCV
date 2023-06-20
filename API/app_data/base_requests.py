@@ -19,8 +19,8 @@ class BaseRequests:
     def patch(self, url: str, json: dict, cookies: str = None) -> Response:
         return self._api_call("PATCH", url=url, json=json, cookies=cookies)
 
-    def post(self, url: str, json: dict = None, cookies: str = None) -> Response:
-        return self._api_call("POST", url=url, json=json, cookies=cookies)
+    def post(self, url: str, json: dict = None, cookies: str = None, files: dict = None) -> Response:
+        return self._api_call("POST", url=url, json=json, cookies=cookies, files=files)
 
     def put(self, url: str, json: dict = None) -> Response:
         return self._api_call("PUT", url=url, json=json)
