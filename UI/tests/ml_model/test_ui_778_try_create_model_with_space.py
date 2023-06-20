@@ -1,5 +1,6 @@
 import allure
 
+from UI.test_framework.data.for_tests.file_for_create_ml_models import config_path
 from UI.test_framework.pages.another_pages.create_model_page import CreateMlModel
 from UI.test_framework.pages.another_pages.ml_models_page import MlModels
 from UI.test_framework.pages.personal_profile_pages.profile_general_information_page import PersonalAreaPage
@@ -23,6 +24,6 @@ def test_ui_779_check_fields(browser_with_delete_model):
     # заполение поля описание
     CreateMlModel(browser_with_delete_model).input_field_description(description="   ")
     # добавление файла
-    CreateMlModel(browser_with_delete_model).add_file()
+    CreateMlModel(browser_with_delete_model).add_file(file_path=config_path)
     # клик на кнопку добавить
     CreateMlModel(browser_with_delete_model).check_button_continue_active()

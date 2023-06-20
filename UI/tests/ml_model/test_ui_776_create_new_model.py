@@ -1,15 +1,12 @@
 import allure
 import platform
 
-from UI.test_framework.data.for_tests.path_for_files import config_path
+from UI.test_framework.data.for_tests.file_for_create_ml_models import config_path
 from UI.test_framework.data.user_data import description
 from UI.test_framework.pages.another_pages.create_model_page import CreateMlModel
 from UI.test_framework.pages.another_pages.ml_models_page import MlModels
 from UI.test_framework.pages.personal_profile_pages.profile_general_information_page import PersonalAreaPage
 
-
-os_name = platform.system()
-b = lambda sys_name: '/' if sys_name == 'Linux' else '\\'
 
 
 @allure.id("776")

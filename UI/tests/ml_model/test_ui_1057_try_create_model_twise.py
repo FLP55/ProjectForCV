@@ -2,6 +2,7 @@ import time
 
 import allure
 
+from UI.test_framework.data.for_tests.file_for_create_ml_models import config_path
 from UI.test_framework.data.user_data import description
 from UI.test_framework.pages.another_pages.create_model_page import CreateMlModel
 from UI.test_framework.pages.another_pages.ml_models_page import MlModels
@@ -28,7 +29,7 @@ def test_ui_1057_try_create_model_twise(browser_with_delete_model):
     # выбор тега
     CreateMlModel(browser_with_delete_model).click_tag()
     # добавление файла
-    CreateMlModel(browser_with_delete_model).add_file()
+    CreateMlModel(browser_with_delete_model).add_file(file_path=config_path)
     # клик на кнопку добавить
     CreateMlModel(browser_with_delete_model).click_button_add()
     # клик на кнопку создать модель
